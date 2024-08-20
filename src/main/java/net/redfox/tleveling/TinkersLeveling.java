@@ -9,6 +9,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.redfox.tleveling.sound.ModSounds;
 import org.slf4j.Logger;
 
 @Mod(TinkersLeveling.MOD_ID)
@@ -20,6 +21,7 @@ public class TinkersLeveling {
 		IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 		modEventBus.addListener(this::commonSetup);
 		MinecraftForge.EVENT_BUS.register(this);
+		ModSounds.register(modEventBus);
 	}
 
 	private void commonSetup(final FMLCommonSetupEvent event) {

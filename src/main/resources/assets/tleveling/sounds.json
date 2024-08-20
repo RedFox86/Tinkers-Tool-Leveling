@@ -1,0 +1,8 @@
+{
+	"level_chime": {
+		"subtitle": "sounds.tleveling.level_up_chime",
+		"sounds": [
+			"tleveling:level_chime"
+		]
+	}
+}
