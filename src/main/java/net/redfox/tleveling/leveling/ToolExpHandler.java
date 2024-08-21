@@ -31,6 +31,9 @@ public class ToolExpHandler {
 	public static double loadExpOnTool(ItemStack stack) {
 		return NBTHandler.loadNBTData(stack.getOrCreateTag(), "toolExp");
 	}
+	public static int getRequiredExp(int level) {
+		return Math.round((float)(500 * Math.pow(2.5f, level)));
+	}
 
 	private static double getExpFromBlockState(BlockState state) {
 		if (state.is(ModTags.Blocks.EXP_PICKAXE_NOR_FIVE)) {
