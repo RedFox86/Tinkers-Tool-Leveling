@@ -1,6 +1,6 @@
 package net.redfox.tleveling.config;
 
-import net.minecraftforge.common.ForgeConfigSpec;
+//import net.minecraftforge.common.ForgeConfigSpec;
 
 public class TinkersLevelingClientConfigs {
 //	public static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
