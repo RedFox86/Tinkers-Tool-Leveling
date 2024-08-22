@@ -52,17 +52,12 @@ public class ToolEventHandler {
 		ItemStack stack = player.getItemBySlot(slot);
 		ToolLevel stackLevel = ToolExpHandler.loadLevelOnTool(stack);
 		int reqStackExp = ToolExpHandler.getRequiredExp(stackLevel.getLevel());
-		ToolExpHandler.saveArmorExpOnTool(getRandomArmorBonus(amount), stack);
+		ToolExpHandler.saveArmorExpOnTool(ToolExpHandler.getRandomBonus(amount), stack);
 		double helmExp = ToolExpHandler.loadExpOnTool(stack);
 		if (helmExp >= reqStackExp && !stackLevel.isMaxLevel()) {
 			Modifier modifier = ToolModifierHandler.toolLevelUp(stack);
 			ToolLevelHandler.toolLevelUp(stack, helmExp, reqStackExp, stackLevel, modifier, player);
 		}
 	}
-	private static float getRandomArmorBonus(float amount) {
-		Random random = new Random();
-		float bonus = (random.nextInt(Math.round(amount*10)));
-		bonus = bonus / 10;
-		return bonus;
-	}
+
 }

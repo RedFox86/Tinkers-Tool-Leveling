@@ -44,6 +44,7 @@ public class ModTags {
 	public static class EntityTypes {
 		public static final TagKey<EntityType<?>> EXCLUDED_ENTITIES = tag("excluded_entities");
 		public static final TagKey<EntityType<?>> BOSS_ENTITIES = tag("boss_entities");
+		//Why must EntityTypeTags create method be private? Now I have no consistancy :(
 
 		private static TagKey<EntityType<?>> tag(String name) {
 			return TagKey.create(Registry.ENTITY_TYPE_REGISTRY, new ResourceLocation(TinkersLeveling.MOD_ID, name));

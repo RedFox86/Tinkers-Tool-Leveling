@@ -17,6 +17,7 @@
 
 	"tooltip.tleveling.hold_alt": "Hold %s for experience",
 	"tooltip.tleveling.tool_level": "Tool Level: %s %s",
+	"tooltip.tleveling.tool_exp": "Tool Exp: %s %s",
 
 	"message.tleveling.like_new": "You notice some room for improvement on your %s",
 	"message.tleveling.clumsy": "You begin to feel comfortable handling your %s",

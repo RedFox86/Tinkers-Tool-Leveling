@@ -22,6 +22,11 @@ public class TinkersLeveling {
 		modEventBus.addListener(this::commonSetup);
 		MinecraftForge.EVENT_BUS.register(this);
 		ModSounds.register(modEventBus);
+		LOGGER.debug("Tinker's Tool Leveling 2 loaded successfully.");
+	}
+
+	public static void warnLog(String msg) {
+		LOGGER.warn(msg);
 	}
 
 	private void commonSetup(final FMLCommonSetupEvent event) {

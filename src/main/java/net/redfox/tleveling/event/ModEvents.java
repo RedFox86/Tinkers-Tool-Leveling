@@ -46,24 +46,27 @@ public class ModEvents {
 			if (heldKey == KeyModifier.CONTROL || heldKey == KeyModifier.SHIFT) {
 				return;
 			}
-
 			ItemStack stack = event.getItemStack();
 			List<Component> tooltip = event.getToolTip();
 			if (heldKey == KeyModifier.ALT) {
 				Component itemName = tooltip.get(0);
 				event.getToolTip().clear();
 				event.getToolTip().add(itemName);
-				double currentExp = Math.floor(ToolExpHandler.loadExpOnTool(stack)*100) / 100;
+				double currentExp = ToolExpHandler.loadExpOnTool(stack);
 				ToolLevel level = ToolExpHandler.loadLevelOnTool(stack);
-				double requiredExp = Math.round((500 * Math.pow(2.5f, level.getLevel())));
+				int requiredExp = (int)(500 * Math.pow(2.5f, level.getLevel()));
 				event.getToolTip().add(Component.translatable("tooltip.tleveling.tool_level", level.getName(), Component.literal("(" + level.getLevel() + ")").withStyle(s -> s.withColor(TextColor.parseColor("#555555")))));
-				event.getToolTip().add(Component.literal("Tool Exp: " + currentExp + "/" + requiredExp + " (" + (Math.floor((currentExp/requiredExp)*1000))/10 + "%)"));
+				event.getToolTip().add(Component.translatable("tooltip.tleveling.tool_exp", Component.literal(TooltipHandler.getUniformDecimal(currentExp) + "/" + requiredExp), TooltipHandler.getColorComponent(currentExp, requiredExp)));
 			} else {
 				int index = tooltip.indexOf(TooltipUtil.TOOLTIP_HOLD_CTRL);
 				if (index != -1) {
 					index = tooltip.indexOf(TooltipUtil.TOOLTIP_HOLD_SHIFT);
 				}
-				tooltip.add(index+2, Component.translatable("tooltip.tleveling.hold_alt", Component.translatable("key.tleveling.alt").withStyle(s -> s.withColor(TextColor.parseColor("#FF55FF"))).withStyle(s -> s.withItalic(true))));
+				if (index != -1) {
+					tooltip.add(index+2, Component.translatable("tooltip.tleveling.hold_alt", Component.translatable("key.tleveling.alt").withStyle(s -> s.withColor(TextColor.parseColor("#FF55FF"))).withStyle(s -> s.withItalic(true))));
+				} else {
+					TinkersLeveling.warnLog("The tool didn't have a shift or ctrl! Could not place the tooltip. " + stack.getDisplayName().getString());
+				}
 			}
 		}
 		@SubscribeEvent

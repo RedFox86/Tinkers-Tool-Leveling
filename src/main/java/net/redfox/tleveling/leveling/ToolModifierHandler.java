@@ -4,6 +4,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.world.item.ItemStack;
+import net.redfox.tleveling.TinkersLeveling;
 import net.redfox.tleveling.util.ModTags;
 import org.apache.commons.lang3.ArrayUtils;
 
@@ -37,6 +38,7 @@ public class ToolModifierHandler {
 			}
 		} else {
 			modifier = chooseModifier(new Modifier[]{});
+			TinkersLeveling.warnLog("A tool isn't in any tag! " + stack.getDisplayName().getString());
 		}
 		upgradeModifier(stack, modifier);
 		return modifier;
