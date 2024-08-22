@@ -7,8 +7,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.level.BlockEvent;
 import net.redfox.tleveling.util.ModTags;
 
-import java.util.Random;
-
 public class ToolEventHandler {
 	public static void handleMiningEvent(BlockEvent.BreakEvent event) {
 		Player player = event.getPlayer();
