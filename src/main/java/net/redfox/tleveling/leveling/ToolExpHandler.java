@@ -70,6 +70,6 @@ public class ToolExpHandler {
 	}
 	public static double getRandomBonus(double amount) {
 		Random random = new Random();
-		return random.nextInt(MathHandler.round(amount*100))/100d;
+		return amount + random.nextInt(MathHandler.round(amount*100))/100d;
 	}
 }

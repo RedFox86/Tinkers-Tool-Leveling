@@ -13,6 +13,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.redfox.tleveling.TinkersLeveling;
 import net.redfox.tleveling.leveling.*;
+import net.redfox.tleveling.util.MathHandler;
 import net.redfox.tleveling.util.ModTags;
 import slimeknights.tconstruct.library.tools.helper.TooltipUtil;
 
@@ -56,7 +57,7 @@ public class ModEvents {
 				ToolLevel level = ToolExpHandler.loadLevelOnTool(stack);
 				int requiredExp = (int)(500 * Math.pow(2.5f, level.getLevel()));
 				event.getToolTip().add(Component.translatable("tooltip.tleveling.tool_level", level.getName(), Component.literal("(" + level.getLevel() + ")").withStyle(s -> s.withColor(TextColor.parseColor("#555555")))));
-				event.getToolTip().add(Component.translatable("tooltip.tleveling.tool_exp", Component.literal(TooltipHandler.getUniformDecimal(currentExp) + "/" + requiredExp), TooltipHandler.getColorComponent(currentExp, requiredExp)));
+				event.getToolTip().add(Component.translatable("tooltip.tleveling.tool_exp", Component.literal(MathHandler.getUniformDecimal(currentExp) + "/" + requiredExp), TooltipHandler.getColorComponent(currentExp, requiredExp)));
 			} else {
 				int index = tooltip.indexOf(TooltipUtil.TOOLTIP_HOLD_CTRL);
 				if (index != -1) {
