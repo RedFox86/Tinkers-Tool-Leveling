@@ -6,7 +6,7 @@ That being said, this mod grants your tool a random modifier upon leveling up. E
 
 **CUSTOMIZATION**
 
-At the present, you can customize this mod by disabling / modifying certain entities and blocks by how much experience they give. You can modify this through datapacks by overriding the tags within the mod. In the future, more customization might be available, such as including custom modifiers within the levelup pool, but at the moment this is all that exists.
+Customization is supported via datapack to modify the tags used in this mod to determine valid items to gain exp. Additionally, to change the amount of exp gotten, there is a config file in (instance)/config/tinkersleveling-common.toml.
 
 **FEATURES**
 
