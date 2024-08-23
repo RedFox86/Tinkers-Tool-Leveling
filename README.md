@@ -29,4 +29,4 @@ You are allowed to use this mod in your modpack :P
 
 **Credits**
 
-\- Level up sound effect, level names, and level up messages from the original mod: [Tinkers' Tool Leveling](https://github.com/SlimeKnights/TinkersToolLeveling)
+\- Level up sound effect, level names, base icon, and level up messages from the original mod: [Tinkers' Tool Leveling](https://github.com/SlimeKnights/TinkersToolLeveling)
