@@ -15,7 +15,7 @@ public class ToolEventHandler {
 		int requiredExp = (int) Math.round((500 * Math.pow(2.5f, stackLevel.getLevel())));
 		ToolExpHandler.saveMiningExpOnTool(event.getState(), stack);
 		double currentExp = ToolExpHandler.loadExpOnTool(stack);
-		if (currentExp >= requiredExp && stackLevel.isMaxLevel()) {
+		if (currentExp >= requiredExp && !stackLevel.isMaxLevel()) {
 			Modifier modifier = ToolModifierHandler.toolLevelUp(stack);
 			ToolLevelHandler.toolLevelUp(stack, currentExp, requiredExp, stackLevel, modifier, player);
 		}

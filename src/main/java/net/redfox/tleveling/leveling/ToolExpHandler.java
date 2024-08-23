@@ -5,6 +5,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import net.redfox.tleveling.TinkersLeveling;
 import net.redfox.tleveling.config.TinkersLevelingCommonConfigs;
+import net.redfox.tleveling.util.MathHandler;
 import net.redfox.tleveling.util.ModTags;
 import net.redfox.tleveling.util.NBTHandler;
 
@@ -17,7 +18,6 @@ public class ToolExpHandler {
 	public static ToolLevel loadLevelOnTool(ItemStack item) {
 		return ToolLevel.TOOL_LEVELS[(int) NBTHandler.loadNBTData(item.getOrCreateTag(), "toolLevel")];
 	}
-
 	public static void saveMiningExpOnTool(BlockState state, ItemStack item) {
 		double blockExp = getExpFromBlockState(state);
 		double toolExp = blockExp + NBTHandler.loadNBTData(item.getOrCreateTag(), "toolExp");
@@ -36,11 +36,11 @@ public class ToolExpHandler {
 		return NBTHandler.loadNBTData(stack.getOrCreateTag(), "toolExp");
 	}
 	public static int getRequiredExp(int level) {
-		return Math.round((float)(500 * Math.pow(2.5f, level)));
+		return MathHandler.round(Math.pow(2.5f, level) * 500);
 	}
 
 	private static double getExpFromBlockState(BlockState state) {
-		float exp;
+		double exp;
 		if (state.is(ModTags.Blocks.EXP_PICKAXE_NOR_FIVE)) {
 			exp = 0.5f;
 		} else if (state.is(ModTags.Blocks.EXP_PICKAXE_TWO)) {
@@ -60,13 +60,16 @@ public class ToolExpHandler {
 
 	}
 	private static double getExpFromEntity(Entity entity) {
+		double exp;
 		if (entity.getType().is(ModTags.EntityTypes.BOSS_ENTITIES)) {
-			return getRandomBonus(200);
+			exp = getRandomBonus(200);
+		} else {
+			exp = getRandomBonus(5);
 		}
-		return getRandomBonus(5);
+		return exp * TinkersLevelingCommonConfigs.KILL_EXP_MULTIPLIER.get();
 	}
-	public static float getRandomBonus(float amount) {
+	public static double getRandomBonus(double amount) {
 		Random random = new Random();
-		return amount + ((float) random.nextInt(Math.round(amount * 10)) /10);
+		return random.nextInt(MathHandler.round(amount*100))/100d;
 	}
 }

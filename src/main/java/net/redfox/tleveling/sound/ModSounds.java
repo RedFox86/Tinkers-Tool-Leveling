@@ -15,12 +15,12 @@ public class ModSounds {
 	public static final RegistryObject<SoundEvent> LEVEL_CHIME = registerSoundEvent("level_chime");
 
 	private static RegistryObject<SoundEvent> registerSoundEvent(String name) {
-		System.out.println("Sound registered: " + name);
+		TinkersLeveling.debugLog("Sound registered: " + name);
 		return SOUND_EVENTS.register(name, () -> new SoundEvent(new ResourceLocation(TinkersLeveling.MOD_ID, name)));
 	}
 
 	public static void register(IEventBus eventBus) {
-		System.out.println("Eventbus Registered");
+		TinkersLeveling.debugLog("Eventbus successfully registered.");
 		SOUND_EVENTS.register(eventBus);
 	}
 }

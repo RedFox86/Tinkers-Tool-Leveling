@@ -2,6 +2,7 @@ package net.redfox.tleveling.leveling;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextColor;
+import net.redfox.tleveling.util.MathHandler;
 
 public class TooltipHandler {
 	public static final TextColor RED = TextColor.parseColor("#FF5555");
@@ -10,7 +11,7 @@ public class TooltipHandler {
 	public static final TextColor GREEN = TextColor.parseColor("#55FF55");
 
 	public static Component getColorComponent(double a, int b) {
-		double value = getUniformDecimal((a/b)*100);
+		double value = MathHandler.getUniformPercentage(a, b);
 		String message = String.valueOf(value);
 		if (value >= 0 && value < 25) {
 			return Component.literal("(" + message + "%)").withStyle(s -> s.withColor(RED));
@@ -23,8 +24,5 @@ public class TooltipHandler {
 		} else {
 			return Component.literal("(" + message + "%)");
 		}
-	}
-	public static double getUniformDecimal(double number) {
-		return Math.floor((number*100))/100;
 	}
 }
