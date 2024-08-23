@@ -18,6 +18,7 @@ Customization is supported via datapack to modify the tags used in this mod to d
 You are allowed to use this mod in your modpack :P
 
 **MODIFIER WORKTABLE**
+
 The modifier worktable is a recently added part of Tinker's Construct that allows you to remove modifiers from a tool and get the upgrade back. While this does disrupt the point of the entire mod (random upgrade that you have no control over), there is nothing I can do to stop this other than completely removing the modifier worktable altogether. I encourage you not to remove the level-granted modifiers, but it's entirely up to you.
 
 **FAQ**
