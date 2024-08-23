@@ -69,19 +69,26 @@ public class ToolModifierHandler {
 				}
 			}
 		} else {
-			CompoundTag modifierUpgrade = getModifierUpgrade(modifier);
+			CompoundTag modifierUpgrade = getModifierUpgrade(modifier, 1);
 			ticUpgrades.add(modifierUpgrade);
 			nbt.put("tic_upgrades", ticUpgrades);
 			stack.setTag(nbt);
 		}
 	}
 	private static boolean hasPreviousModifier(ItemStack stack, Modifier modifier) {
-		return stack.getOrCreateTag().getList("tic_upgrades", Tag.TAG_COMPOUND).contains(getModifierUpgrade(modifier));
+		boolean contains = false;
+		for (int i = 1; i <= modifier.getMax(); i++) {
+			contains = stack.getOrCreateTag().getList("tic_upgrades", Tag.TAG_COMPOUND).contains(getModifierUpgrade(modifier, i));
+			if (contains) {
+				break;
+			}
+		}
+		return contains;
 	}
-	private static CompoundTag getModifierUpgrade(Modifier modifier) {
+	private static CompoundTag getModifierUpgrade(Modifier modifier, int level) {
 		CompoundTag modifierUpgrade = new CompoundTag();
 		modifierUpgrade.putString("name", "tconstruct:" + modifier.getName());
-		modifierUpgrade.putInt("level", 1);
+		modifierUpgrade.putInt("level", level);
 		return modifierUpgrade;
-	}
+	}//FIX!!
 }

@@ -1,6 +1,8 @@
 package net.redfox.tleveling.leveling;
 
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import net.redfox.tleveling.TinkersLeveling;
@@ -57,16 +59,15 @@ public class ToolExpHandler {
 		}
 		exp = getRandomBonus(exp);
 		return exp * TinkersLevelingCommonConfigs.PICKAXE_EXP_MULTIPLIER.get();
-
 	}
 	private static double getExpFromEntity(Entity entity) {
-		double exp;
-		if (entity.getType().is(ModTags.EntityTypes.BOSS_ENTITIES)) {
-			exp = getRandomBonus(200);
+		float maxHealth;
+		if (entity instanceof LivingEntity e) {
+			maxHealth = e.getMaxHealth();
 		} else {
-			exp = getRandomBonus(5);
+			return 0.0d;
 		}
-		return exp * TinkersLevelingCommonConfigs.KILL_EXP_MULTIPLIER.get();
+		return getRandomBonus(maxHealth) * TinkersLevelingCommonConfigs.KILL_EXP_MULTIPLIER.get();
 	}
 	public static double getRandomBonus(double amount) {
 		Random random = new Random();
