@@ -31,7 +31,7 @@ public class ToolLevel {
 		return this.level;
 	}
 	public Component getMessage(Component toolName) {
-		return Component.translatable("message.tleveling."+id, toolName);
+		return Component.translatable("message.tleveling."+id, toolName).withStyle(s -> s.withColor(TooltipHandler.BLUE));
 	}
 	public String getName() {
 		return this.name;

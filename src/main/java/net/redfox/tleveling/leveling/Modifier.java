@@ -3,7 +3,7 @@ package net.redfox.tleveling.leveling;
 import net.minecraft.network.chat.Component;
 
 public class Modifier {
-	private static final Modifier WORLDBOUND = new Modifier("worldbound", 1);
+//	private static final Modifier WORLDBOUND = new Modifier("worldbound", 1); Modifiers with max level one don't work.
 	private static final Modifier MAGNETIC = new Modifier("magnetic", 5);
 
 	private static final Modifier FIERY = new Modifier("fiery", 5);
@@ -44,7 +44,7 @@ public class Modifier {
 	private static final Modifier PUNCH = new Modifier("punch", 2);
 	private static final Modifier QUICK_CHARGE = new Modifier("quick_charge", 3);
 
-	public static final Modifier[] GLOBAL_MODIFIERS = new Modifier[]{WORLDBOUND, MAGNETIC};
+	public static final Modifier[] GLOBAL_MODIFIERS = new Modifier[]{MAGNETIC};
 	public static final Modifier[] MELEE_MODIFIERS = new Modifier[]{FIERY, FREEZING, KNOCKBACK, NECROTIC, PADDED, SEVERING, SWEEPING_EDGE};
 	public static final Modifier[] BONUS_DAMAGE_MODIFIERS = new Modifier[]{ANTIAQUATIC, BANE_OF_SPIDERS, COOLING, KILLAGER, PIERCE, SHARPNESS, SMITE, SWIFTSTRIKE};
 	public static final Modifier[] PICKAXE_MODIFIERS = new Modifier[]{HASTE, BLASTING, HYDRAULIC, LIGHTSPEED};
@@ -62,7 +62,7 @@ public class Modifier {
 	public Modifier(String IName, int Imax) {
 		this.max = Imax;
 		this.name = IName;
-		this.message = Component.translatable("message.tleveling."+name);
+		this.message = Component.translatable("message.tleveling."+name).withStyle(s -> s.withColor(TooltipHandler.DARK_AQUA));
 	}
 	public String getName() {
 		return this.name;

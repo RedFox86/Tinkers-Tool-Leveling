@@ -11,7 +11,6 @@ import org.apache.commons.lang3.ArrayUtils;
 import java.util.Random;
 
 public class ToolModifierHandler {
-
 	public static Modifier toolLevelUp(ItemStack stack) {
 		Modifier modifier;
 		if (stack.is(ModTags.Items.TINKERS_MINING)) {
@@ -90,5 +89,5 @@ public class ToolModifierHandler {
 		modifierUpgrade.putString("name", "tconstruct:" + modifier.getName());
 		modifierUpgrade.putInt("level", level);
 		return modifierUpgrade;
-	}//FIX!!
+	}
 }

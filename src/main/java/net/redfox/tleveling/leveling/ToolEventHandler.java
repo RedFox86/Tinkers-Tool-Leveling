@@ -51,10 +51,10 @@ public class ToolEventHandler {
 		ToolLevel stackLevel = ToolExpHandler.loadLevelOnTool(stack);
 		int reqStackExp = ToolExpHandler.getRequiredExp(stackLevel.getLevel());
 		ToolExpHandler.saveArmorExpOnTool(ToolExpHandler.getRandomBonus(amount), stack);
-		double helmExp = ToolExpHandler.loadExpOnTool(stack);
-		if (helmExp >= reqStackExp && !stackLevel.isMaxLevel()) {
+		double stackExp = ToolExpHandler.loadExpOnTool(stack);
+		if (stackExp >= reqStackExp && !stackLevel.isMaxLevel()) {
 			Modifier modifier = ToolModifierHandler.toolLevelUp(stack);
-			ToolLevelHandler.toolLevelUp(stack, helmExp, reqStackExp, stackLevel, modifier, player);
+			ToolLevelHandler.toolLevelUp(stack, stackExp, reqStackExp, stackLevel, modifier, player);
 		}
 	}
 

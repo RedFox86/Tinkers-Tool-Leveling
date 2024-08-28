@@ -50,7 +50,11 @@ public class ToolExpHandler {
 			exp = 5;
 		} else if (state.is(ModTags.Blocks.EXP_PICKAXE_ADMIN)) {
 			TinkersLeveling.warnLog("Admin only mining exp was granted. Was this intentional?");
-			exp = 100000;
+			if (TinkersLevelingCommonConfigs.ADMIN_MINING_EXP.get()) {
+				exp = 100000;
+			} else {
+				exp = 1;
+			}
 		} else if (state.is(ModTags.Blocks.EXCLUDED_BLOCKS)) {
 			exp = 0;
 		} else {
@@ -70,6 +74,6 @@ public class ToolExpHandler {
 	}
 	public static double getRandomBonus(double amount) {
 		Random random = new Random();
-		return amount + random.nextInt(MathHandler.round(amount*100))/100d;
+		return amount + random.nextInt(Math.abs(MathHandler.round(amount*100)))/100d;
 	}
 }
