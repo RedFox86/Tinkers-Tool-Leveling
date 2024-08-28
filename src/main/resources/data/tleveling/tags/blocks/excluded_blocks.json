@@ -1,6 +1,6 @@
 {
 	"values": [
-		"#minecraft:all_signs",
+		"#minecraft:signs",
 		"#minecraft:banners",
 		"#minecraft:fire",
 		"#minecraft:rails",
@@ -38,6 +38,7 @@
 		"minecraft:detector_rail",
 		"minecraft:dragon_egg",
 		"minecraft:end_rod",
+		"minecraft:grass",
 		"minecraft:warped_fungus",
 		"minecraft:crimson_fungus",
 		"minecraft:player_head",

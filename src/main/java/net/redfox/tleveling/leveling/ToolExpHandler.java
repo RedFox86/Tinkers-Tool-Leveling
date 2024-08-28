@@ -61,18 +61,21 @@ public class ToolExpHandler {
 			exp = 1;
 		}
 		exp = getRandomBonus(exp);
-		return exp * TinkersLevelingCommonConfigs.PICKAXE_EXP_MULTIPLIER.get();
+		return exp * 2 * TinkersLevelingCommonConfigs.PICKAXE_EXP_MULTIPLIER.get();
 	}
 	private static double getExpFromEntity(Entity entity) {
 		float maxHealth;
 		if (entity instanceof LivingEntity e) {
 			maxHealth = e.getMaxHealth();
 		} else {
-			return 0.0d;
+			return 0;
 		}
 		return getRandomBonus(maxHealth) * TinkersLevelingCommonConfigs.KILL_EXP_MULTIPLIER.get();
 	}
 	public static double getRandomBonus(double amount) {
+		if (amount == 0) {
+			return 0;
+		}
 		Random random = new Random();
 		return amount + random.nextInt(Math.abs(MathHandler.round(amount*100)))/100d;
 	}
