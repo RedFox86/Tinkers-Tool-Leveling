@@ -27,6 +27,9 @@ The modifier worktable is a recently added part of Tinker's Construct that allow
 
 \- Config can be accessed by creating a datapack for your world to override the tags of the mod.
 
+\- There is also a server config in the config folder for your instance.
+
+
 "Fabric pls!!"
 
 \- While I do appreciate fabric, as there is not an __official__ Tinker's Construct port for fabric, I will not create a fabric version.
