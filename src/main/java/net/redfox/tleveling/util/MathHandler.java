@@ -1,8 +1,10 @@
 package net.redfox.tleveling.util;
 
+import net.redfox.tleveling.config.TinkersLevelingCommonConfigs;
+
 public class MathHandler {
 	public static int getRequiredExp(int level) {
-		return MathHandler.round(Math.pow(2.5f, level) * 500);
+		return MathHandler.round(Math.pow(2.5f, level) * TinkersLevelingCommonConfigs.LEVELUP_EXP_REQUIRED.get());
 	}
 	public static int round(double input) {
 		return (int)Math.round(input);

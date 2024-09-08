@@ -32,9 +32,9 @@ public class ToolLevel {
 	}
 	public Component getMessage(Component toolName, boolean bonusModifier) {
 		if (bonusModifier) {
-			return Component.translatable("message.tleveling."+id, toolName, Component.literal("(+1 modifier)")).withStyle(s -> s.withColor(TooltipHandler.BLUE));
+			return Component.translatable("message.tleveling."+id, Component.literal(toolName.getString().replace("[", "").replace("]", "")).withStyle(s -> s.withColor(TooltipHandler.BLUE)), Component.literal("(+1 modifier)")).withStyle(s -> s.withColor(TooltipHandler.BLUE));
 		}
-		return Component.translatable("message.tleveling."+id, toolName, "").withStyle(s -> s.withColor(TooltipHandler.BLUE));
+		return Component.translatable("message.tleveling."+id, Component.literal(toolName.getString().replace("[", "").replace("]", ""))).withStyle(s -> s.withColor(TooltipHandler.BLUE));
 	}
 	public String getName() {
 		return this.name;

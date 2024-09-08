@@ -17,8 +17,7 @@ public class ToolEventHandler {
 		ToolExpHandler.saveMiningExpOnTool(event.getState(), stack);
 		double currentExp = ToolExpHandler.loadExpOnTool(stack);
 		if (currentExp >= requiredExp && !stackLevel.isMaxLevel()) {
-			Modifier modifier = ToolModifierHandler.toolLevelUp(stack);
-			ToolLevelHandler.toolLevelUp(stack, currentExp, requiredExp, stackLevel, modifier, player);
+			ToolLevelHandler.toolLevelUp(stack, currentExp, requiredExp, stackLevel, ToolModifierHandler.toolLevelUp(stack), player);
 		}
 	}
 	public static void handleAttackEvent(Player player, Entity deadEntity) {
