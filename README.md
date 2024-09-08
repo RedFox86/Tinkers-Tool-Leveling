@@ -12,6 +12,8 @@ Customization is supported via datapack to modify the tags used in this mod to d
 
 *   Support for most Tinker's tools and armor.
 *   Adds a random modifier to your tool each levelup.
+*   Adds a bonus modifier to your tool every 3rd levelup.
+*   Commands to handle tool exp
 *   Each levelup requires 2.5x the exp than the previous one.
 *   At the moment just upgrades (no abilities) can be gotten.
 
