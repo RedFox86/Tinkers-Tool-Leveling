@@ -4,6 +4,7 @@ import net.minecraft.network.chat.Component;
 
 public class Modifier {
 //	private static final Modifier WORLDBOUND = new Modifier("worldbound", 1); Modifiers with max level one don't work.
+	private static final Modifier REINFORCED = new Modifier("reinforced", 5);
 	private static final Modifier MAGNETIC = new Modifier("magnetic", 5);
 
 	private static final Modifier FIERY = new Modifier("fiery", 5);
@@ -21,7 +22,7 @@ public class Modifier {
 	private static final Modifier PIERCE = new Modifier("pierce", 3);
 	private static final Modifier SHARPNESS = new Modifier("sharpness", 5);
 	private static final Modifier SMITE = new Modifier("smite", 5);
-	private static final Modifier SWIFTSTRIKE = new Modifier("switftstrike", 5);
+	private static final Modifier SWIFTSTRIKE = new Modifier("swiftstrike", 5);
 
 	private static final Modifier HASTE = new Modifier("haste", 5);
 	private static final Modifier BLASTING = new Modifier("blasting", 5);
@@ -44,7 +45,7 @@ public class Modifier {
 	private static final Modifier PUNCH = new Modifier("punch", 2);
 	private static final Modifier QUICK_CHARGE = new Modifier("quick_charge", 3);
 
-	public static final Modifier[] GLOBAL_MODIFIERS = new Modifier[]{MAGNETIC};
+	public static final Modifier[] GLOBAL_MODIFIERS = new Modifier[]{MAGNETIC, REINFORCED};
 	public static final Modifier[] MELEE_MODIFIERS = new Modifier[]{FIERY, FREEZING, KNOCKBACK, NECROTIC, PADDED, SEVERING, SWEEPING_EDGE};
 	public static final Modifier[] BONUS_DAMAGE_MODIFIERS = new Modifier[]{ANTIAQUATIC, BANE_OF_SPIDERS, COOLING, KILLAGER, PIERCE, SHARPNESS, SMITE, SWIFTSTRIKE};
 	public static final Modifier[] PICKAXE_MODIFIERS = new Modifier[]{HASTE, BLASTING, HYDRAULIC, LIGHTSPEED};

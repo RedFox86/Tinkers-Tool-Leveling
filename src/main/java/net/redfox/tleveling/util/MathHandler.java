@@ -1,6 +1,9 @@
 package net.redfox.tleveling.util;
 
 public class MathHandler {
+	public static int getRequiredExp(int level) {
+		return MathHandler.round(Math.pow(2.5f, level) * 500);
+	}
 	public static int round(double input) {
 		return (int)Math.round(input);
 	}

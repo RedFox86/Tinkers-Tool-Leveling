@@ -31,6 +31,7 @@ public class ModTags {
 		public static final TagKey<Item> TINKERS_MELEE = tag("tinker_melee");
 		public static final TagKey<Item> TINKERS_RANGED = tag("tinker_ranged");
 		public static final TagKey<Item> TINKERS_CROSSBOW = tag("tinker_crossbow");
+		public static final TagKey<Item> TINKERS_WEAPONS = tag("tinker_weapon");
 
 		public static final TagKey<Item> TINKERS_HELMET = tag("tinker_helmet");
 		public static final TagKey<Item> TINKERS_CHESTPLATE = tag("tinker_chestplate");

@@ -13,31 +13,28 @@ import net.redfox.tleveling.util.NBTHandler;
 import java.util.Random;
 
 public class ToolExpHandler {
-	public static void saveLevelOnTool(ItemStack item, ToolLevel level) {
-		item.getOrCreateTag().putInt("toolLevel", level.getLevel());
+	public static void saveLevelOnTool(ItemStack stack, ToolLevel level) {
+		NBTHandler.saveDoubleNBT(stack.getOrCreateTag(), level.getLevel(), "toolLevel");
 	}
 	public static ToolLevel loadLevelOnTool(ItemStack item) {
-		return ToolLevel.TOOL_LEVELS[(int) NBTHandler.loadNBTData(item.getOrCreateTag(), "toolLevel")];
+		return ToolLevel.TOOL_LEVELS[(int) NBTHandler.loadDoubleNBT(item.getOrCreateTag(), "toolLevel")];
 	}
-	public static void saveMiningExpOnTool(BlockState state, ItemStack item) {
+	public static void saveMiningExpOnTool(BlockState state, ItemStack stack) {
 		double blockExp = getExpFromBlockState(state);
-		double toolExp = blockExp + NBTHandler.loadNBTData(item.getOrCreateTag(), "toolExp");
-		NBTHandler.saveNBTData(item.getOrCreateTag(), toolExp, "toolExp");
+		double toolExp = blockExp + NBTHandler.loadDoubleNBT(stack.getOrCreateTag(), "toolExp");
+		NBTHandler.saveDoubleNBT(stack.getOrCreateTag(), toolExp, "toolExp");
 	}
 	public static void saveKillingExpOnTool(Entity entity, ItemStack item) {
 		double entityExp = getExpFromEntity(entity);
-		double toolExp = entityExp + NBTHandler.loadNBTData(item.getOrCreateTag(), "toolExp");
-		NBTHandler.saveNBTData(item.getOrCreateTag(), toolExp, "toolExp");
+		double toolExp = entityExp + NBTHandler.loadDoubleNBT(item.getOrCreateTag(), "toolExp");
+		NBTHandler.saveDoubleNBT(item.getOrCreateTag(), toolExp, "toolExp");
 	}
 	public static void saveArmorExpOnTool(double exp, ItemStack item) {
-		double toolExp = exp + NBTHandler.loadNBTData(item.getOrCreateTag(), "toolExp");
-		NBTHandler.saveNBTData(item.getOrCreateTag(), toolExp, "toolExp");
+		double toolExp = exp + NBTHandler.loadDoubleNBT(item.getOrCreateTag(), "toolExp");
+		NBTHandler.saveDoubleNBT(item.getOrCreateTag(), toolExp, "toolExp");
 	}
 	public static double loadExpOnTool(ItemStack stack) {
-		return NBTHandler.loadNBTData(stack.getOrCreateTag(), "toolExp");
-	}
-	public static int getRequiredExp(int level) {
-		return MathHandler.round(Math.pow(2.5f, level) * 500);
+		return NBTHandler.loadDoubleNBT(stack.getOrCreateTag(), "toolExp");
 	}
 
 	private static double getExpFromBlockState(BlockState state) {

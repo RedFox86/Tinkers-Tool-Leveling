@@ -5,6 +5,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.level.BlockEvent;
+import net.redfox.tleveling.util.MathHandler;
 import net.redfox.tleveling.util.ModTags;
 
 public class ToolEventHandler {
@@ -23,7 +24,7 @@ public class ToolEventHandler {
 	public static void handleAttackEvent(Player player, Entity deadEntity) {
 		ItemStack stack = player.getMainHandItem();
 		ToolLevel stackLevel = ToolExpHandler.loadLevelOnTool(stack);
-		int requiredExp = ToolExpHandler.getRequiredExp(stackLevel.getLevel());
+		int requiredExp = MathHandler.getRequiredExp(stackLevel.getLevel());
 		ToolExpHandler.saveKillingExpOnTool(deadEntity, stack);
 		double currentExp = ToolExpHandler.loadExpOnTool(stack);
 		if (currentExp >= requiredExp && !stackLevel.isMaxLevel()) {
@@ -49,7 +50,7 @@ public class ToolEventHandler {
 	private static void handleSpecificArmorEvent(Player player, float amount, EquipmentSlot slot) {
 		ItemStack stack = player.getItemBySlot(slot);
 		ToolLevel stackLevel = ToolExpHandler.loadLevelOnTool(stack);
-		int reqStackExp = ToolExpHandler.getRequiredExp(stackLevel.getLevel());
+		int reqStackExp = MathHandler.getRequiredExp(stackLevel.getLevel());
 		ToolExpHandler.saveArmorExpOnTool(ToolExpHandler.getRandomBonus(amount), stack);
 		double stackExp = ToolExpHandler.loadExpOnTool(stack);
 		if (stackExp >= reqStackExp && !stackLevel.isMaxLevel()) {

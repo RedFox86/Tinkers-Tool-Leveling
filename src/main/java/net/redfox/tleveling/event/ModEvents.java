@@ -4,13 +4,18 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.settings.KeyModifier;
+import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.server.command.ConfigCommand;
 import net.redfox.tleveling.TinkersLeveling;
+import net.redfox.tleveling.command.ExpGetCommand;
+import net.redfox.tleveling.command.ExpSetCommand;
 import net.redfox.tleveling.leveling.*;
 import net.redfox.tleveling.util.ModTags;
 
@@ -19,16 +24,16 @@ import java.util.List;
 public class ModEvents {
 	@Mod.EventBusSubscriber(modid = TinkersLeveling.MOD_ID)
 	public static class ForgeEvents {
-		private static boolean skip = true;
+		private static boolean blockSkip = true;
 		@SubscribeEvent
 		public static void onBlockBreak(BlockEvent.BreakEvent event) { //This event fires twice when mining with Tinker's tools! Why?
 			Player player = event.getPlayer();
 			if (player.getMainHandItem().is(ModTags.Items.TINKERS_MINING)) {
-				if (skip) {
-					skip = false;
+				if (blockSkip) {
+					blockSkip = false;
 					return;
 				}
-				skip = true;
+				blockSkip = true;
 				ToolEventHandler.handleMiningEvent(event);
 			}
 		}
@@ -40,7 +45,7 @@ public class ModEvents {
 			if (event.getEntity().getType().is(ModTags.EntityTypes.EXCLUDED_ENTITIES)) {
 				return;
 			}
-			if (player.getMainHandItem().is(ModTags.Items.TINKERS_MELEE)) {
+			if (player.getMainHandItem().is(ModTags.Items.TINKERS_WEAPONS)) {
 				ToolEventHandler.handleAttackEvent(player, event.getEntity());
 			}
 		}
@@ -70,6 +75,13 @@ public class ModEvents {
 			} else {
 				TooltipHandler.appendAltTooltip(tooltip);
 			}
+		}
+		@SubscribeEvent
+		public static void onCommandsRegister(RegisterCommandsEvent event) {
+			new ExpSetCommand(event.getDispatcher());
+			new ExpGetCommand(event.getDispatcher());
+
+			ConfigCommand.register(event.getDispatcher());
 		}
 	}
 }

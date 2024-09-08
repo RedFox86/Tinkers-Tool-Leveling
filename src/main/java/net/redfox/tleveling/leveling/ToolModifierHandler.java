@@ -7,6 +7,8 @@ import net.minecraft.world.item.ItemStack;
 import net.redfox.tleveling.TinkersLeveling;
 import net.redfox.tleveling.util.ModTags;
 import org.apache.commons.lang3.ArrayUtils;
+import slimeknights.tconstruct.library.tools.SlotType;
+import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 
 import java.util.Random;
 
@@ -39,13 +41,26 @@ public class ToolModifierHandler {
 			modifier = chooseModifier(new Modifier[]{});
 			TinkersLeveling.warnLog("A tool isn't in any tag! " + stack.getDisplayName().getString());
 		}
+		if (modifier == null) {
+			return null;
+		}
 		upgradeModifier(stack, modifier);
 		return modifier;
 	}
-
+	public static void setBonusModifiers(ItemStack stack, int input) {
+		ToolStack tool = ToolStack.from(stack);
+		tool.getPersistentData().setSlots(SlotType.UPGRADE, input);
+	}
+	public static int getBonusModifiers(ItemStack stack) {
+		ToolStack tool = ToolStack.from(stack);
+		return tool.getPersistentData().getSlots(SlotType.UPGRADE);
+	}
 	private static Modifier chooseModifier(Modifier[] specificModifiers) {
 		Modifier[] modifiers = ArrayUtils.addAll(specificModifiers, Modifier.GLOBAL_MODIFIERS);
 		Random random = new Random();
+		if (modifiers.length == 0) {
+			return null;
+		}
 		return modifiers[random.nextInt(modifiers.length)];
 	}
 

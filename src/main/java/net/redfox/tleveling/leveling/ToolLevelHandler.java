@@ -8,9 +8,14 @@ import net.redfox.tleveling.util.NBTHandler;
 
 public class ToolLevelHandler {
 	public static void toolLevelUp(ItemStack stack, double currentExp, int requiredExp, ToolLevel level, Modifier modifier, Player player) {
-		NBTHandler.saveNBTData(stack.getOrCreateTag(), currentExp-requiredExp, "toolExp");
+		NBTHandler.saveDoubleNBT(stack.getOrCreateTag(), currentExp-requiredExp, "toolExp");
 		ToolExpHandler.saveLevelOnTool(stack, ToolLevel.TOOL_LEVELS[level.getLevel()+1]);
-		player.sendSystemMessage(level.getMessage(stack.getDisplayName()));
+		if ((level.getLevel()+3) % 3 == 0) {
+			ToolModifierHandler.setBonusModifiers(stack, ToolModifierHandler.getBonusModifiers(stack)+1);
+			player.sendSystemMessage(level.getMessage(stack.getDisplayName(), true));
+		} else {
+			player.sendSystemMessage(level.getMessage(stack.getDisplayName(), false));
+		}
 		player.sendSystemMessage(modifier.getMessage());
 		player.getLevel().playSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.LEVEL_CHIME.get(), SoundSource.MASTER, 1f, 1f);
 	}
