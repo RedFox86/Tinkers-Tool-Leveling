@@ -13,8 +13,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.server.command.ConfigCommand;
 import net.redfox.tleveling.TinkersLeveling;
-import net.redfox.tleveling.command.ExpGetCommand;
-import net.redfox.tleveling.command.ExpSetCommand;
+import net.redfox.tleveling.command.*;
 import net.redfox.tleveling.leveling.*;
 import net.redfox.tleveling.util.ModTags;
 
@@ -79,6 +78,9 @@ public class ModEvents {
 		public static void onCommandsRegister(RegisterCommandsEvent event) {
 			new ExpSetCommand(event.getDispatcher());
 			new ExpGetCommand(event.getDispatcher());
+			new LevelGetCommand(event.getDispatcher());
+			new LevelSetCommand(event.getDispatcher());
+			new LevelupCommand(event.getDispatcher());
 
 			ConfigCommand.register(event.getDispatcher());
 		}

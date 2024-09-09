@@ -12,7 +12,7 @@ import net.redfox.tleveling.util.ModTags;
 
 public class ExpGetCommand {
 	public ExpGetCommand(CommandDispatcher<CommandSourceStack> dispatcher) {
-		dispatcher.register(Commands.literal("tleveling").then(Commands.literal("get").executes((command) -> getExp(command.getSource()))));
+		dispatcher.register(Commands.literal("tleveling").requires(commandSource -> commandSource.hasPermission(2)).then(Commands.literal("exp").then(Commands.literal("get").executes((command) -> getExp(command.getSource())))));
 	}
 	private int getExp(CommandSourceStack source) {
 		Player player = source.getPlayer();

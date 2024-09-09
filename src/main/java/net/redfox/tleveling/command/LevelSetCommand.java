@@ -1,7 +1,7 @@
 package net.redfox.tleveling.command;
 
+import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
-import com.mojang.brigadier.arguments.DoubleArgumentType;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import net.minecraft.commands.CommandSourceStack;
@@ -12,9 +12,9 @@ import net.minecraft.world.item.ItemStack;
 import net.redfox.tleveling.util.ModTags;
 import net.redfox.tleveling.util.NBTHandler;
 
-public class ExpSetCommand {
-	public ExpSetCommand(CommandDispatcher<CommandSourceStack> dispatcher) {
-		dispatcher.register(Commands.literal("tleveling").requires(commandSource -> commandSource.hasPermission(2)).then(Commands.literal("exp").then(Commands.literal("set").then(Commands.argument("value", IntegerArgumentType.integer()).executes(ExpSetCommand::setExp)))));
+public class LevelSetCommand {
+	public LevelSetCommand(CommandDispatcher<CommandSourceStack> dispatcher) {
+		dispatcher.register(Commands.literal("tleveling").requires(commandSource -> commandSource.hasPermission(2)).then(Commands.literal("level").then(Commands.literal("set").then(Commands.argument("value", IntegerArgumentType.integer(0)).executes(LevelSetCommand::setExp)))));
 	}
 	private static int setExp(CommandContext<CommandSourceStack> context) {
 		CommandSourceStack source = context.getSource();
@@ -24,12 +24,12 @@ public class ExpSetCommand {
 		}
 		ItemStack stack = player.getMainHandItem();
 		if (!stack.is(ModTags.Items.ALL_TOOLS)) {
-			source.sendFailure(Component.literal("This item does not have tool exp!"));
+			source.sendFailure(Component.literal("This item does not have a tool level!"));
 			return -1;
 		}
-		double value = IntegerArgumentType.getInteger(context, "value");
-		source.sendSystemMessage(Component.literal("Set tool exp to " + value + "."));
-		NBTHandler.saveDoubleNBT(stack.getOrCreateTag(), value, "toolExp");
-		return 1;
+		int value = IntegerArgumentType.getInteger(context, "value");
+		source.sendSystemMessage(Component.literal("Set tool level to " + value + "."));
+		NBTHandler.saveIntNBT(stack.getOrCreateTag(), value, "toolLevel");
+		return Command.SINGLE_SUCCESS;
 	}
 }

@@ -5,6 +5,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.redfox.tleveling.config.TinkersLevelingCommonConfigs;
 import net.redfox.tleveling.sound.ModSounds;
+import net.redfox.tleveling.util.MathHandler;
 import net.redfox.tleveling.util.NBTHandler;
 
 public class ToolLevelHandler {
@@ -22,5 +23,9 @@ public class ToolLevelHandler {
 		}
 		player.sendSystemMessage(modifier.getMessage());
 		player.getLevel().playSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.LEVEL_CHIME.get(), SoundSource.MASTER, 1f, 1f);
+		if (currentExp - requiredExp > MathHandler.getRequiredExp(level.getLevel()+1)) {
+			Modifier newModifier = ToolModifierHandler.toolLevelUp(stack);
+			toolLevelUp(stack, currentExp - requiredExp, requiredExp, ToolLevel.TOOL_LEVELS[level.getLevel()+1], newModifier, player);
+		}
 	}
 }

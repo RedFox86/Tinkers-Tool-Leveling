@@ -45,16 +45,27 @@ public class Modifier {
 	private static final Modifier PUNCH = new Modifier("punch", 2);
 	private static final Modifier QUICK_CHARGE = new Modifier("quick_charge", 3);
 
+	//Modifiers that can go on any tool
 	public static final Modifier[] GLOBAL_MODIFIERS = new Modifier[]{MAGNETIC, REINFORCED};
+	//Modifiers that can only go on melee tools
 	public static final Modifier[] MELEE_MODIFIERS = new Modifier[]{FIERY, FREEZING, KNOCKBACK, NECROTIC, PADDED, SEVERING, SWEEPING_EDGE};
+	//Modifiers that can only go on weapons (melee, ranged, etc)
 	public static final Modifier[] BONUS_DAMAGE_MODIFIERS = new Modifier[]{ANTIAQUATIC, BANE_OF_SPIDERS, COOLING, KILLAGER, PIERCE, SHARPNESS, SMITE, SWIFTSTRIKE};
+	//Modifiers that can only go on pickaxes
 	public static final Modifier[] PICKAXE_MODIFIERS = new Modifier[]{HASTE, BLASTING, HYDRAULIC, LIGHTSPEED};
+	//Modifiers that can only go on ranged weapons (bows, crossbows, etc)
 	public static final Modifier[] RANGED_MODIFIERS = new Modifier[]{FIERY, FREEZING, IMPALING, NECROTIC, PIERCE, POWER, PUNCH};
+	//Modifiers that can only go on crossbows
 	public static final Modifier[] CROSSBOW_MODIFIERS = new Modifier[]{QUICK_CHARGE};
+	//Modifiers that can only go on armor
 	public static final Modifier[] ARMOR_MODIFIERS = new Modifier[]{FIERY, FREEZING, RICOCHET, SPRINGY, THORNS};
+	//Modifiers that can only go on helmets
 	public static final Modifier[] HELMET_MODIFIERS = new Modifier[]{RESPIRATION};
+	//Modifiers that can only go on chestplates
 	public static final Modifier[] CHESTPLATE_MODIFIERS = new Modifier[]{HASTE, KNOCKBACK};
+	//Modifiers that can only go on leggings
 	public static final Modifier[] LEGGINGS_MODIFIERS = new Modifier[]{LEAPING, SPEEDY};
+	//Modifiers that can only go on boots
 	public static final Modifier[] BOOTS_MODIFIERS = new Modifier[]{DEPTH_STRIDER, FEATHER_FALLING, LIGHTSPEED_ARMOR, SOUL_SPEED};
 
 	private final String name;
