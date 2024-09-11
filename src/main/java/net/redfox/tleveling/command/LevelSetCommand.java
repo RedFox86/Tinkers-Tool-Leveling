@@ -10,7 +10,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.redfox.tleveling.util.ModTags;
-import net.redfox.tleveling.util.NBTHandler;
 
 public class LevelSetCommand {
 	public LevelSetCommand(CommandDispatcher<CommandSourceStack> dispatcher) {
@@ -29,7 +28,7 @@ public class LevelSetCommand {
 		}
 		int value = IntegerArgumentType.getInteger(context, "value");
 		source.sendSystemMessage(Component.literal("Set tool level to " + value + "."));
-		NBTHandler.saveIntNBT(stack.getOrCreateTag(), value, "toolLevel");
+		stack.getOrCreateTag().putInt("toolLevel", value);
 		return Command.SINGLE_SUCCESS;
 	}
 }

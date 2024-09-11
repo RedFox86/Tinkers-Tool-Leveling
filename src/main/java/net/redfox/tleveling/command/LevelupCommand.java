@@ -11,7 +11,6 @@ import net.minecraft.world.item.ItemStack;
 import net.redfox.tleveling.leveling.*;
 import net.redfox.tleveling.util.MathHandler;
 import net.redfox.tleveling.util.ModTags;
-import net.redfox.tleveling.util.NBTHandler;
 
 public class LevelupCommand {
 	public LevelupCommand(CommandDispatcher<CommandSourceStack> dispatcher) {
@@ -28,11 +27,14 @@ public class LevelupCommand {
 			source.sendFailure(Component.literal("This item cannot level up!"));
 			return -1;
 		}
-		ToolLevel level = ToolExpHandler.loadLevelOnTool(stack);
+		if (ToolLevel.TOOL_LEVELS[stack.getOrCreateTag().getInt("toolLevel")].isMaxLevel()) {
+			source.sendFailure(Component.literal("This item has reached the maximum level!"));
+			return -1;
+		}
+		ToolLevel level = ToolLevel.TOOL_LEVELS[stack.getOrCreateTag().getInt("toolLevel")];
 		int requiredExp = MathHandler.getRequiredExp(level.getLevel());
-		NBTHandler.saveDoubleNBT(stack.getOrCreateTag(), requiredExp, "toolExp");
-		Modifier modifier = ToolModifierHandler.toolLevelUp(stack);
-		ToolLevelHandler.toolLevelUp(stack, requiredExp, requiredExp, level, modifier, source.getPlayer());
+		stack.getOrCreateTag().putDouble("toolExp", requiredExp);
+		new ToolLeveling(source.getPlayer());
 		source.sendSystemMessage(Component.literal("Tool successfully leveled up."));
 		return Command.SINGLE_SUCCESS;
 	}

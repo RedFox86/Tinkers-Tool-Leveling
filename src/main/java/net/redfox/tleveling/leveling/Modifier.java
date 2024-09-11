@@ -2,10 +2,28 @@ package net.redfox.tleveling.leveling;
 
 import net.minecraft.network.chat.Component;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+@SuppressWarnings("unused")
 public class Modifier {
-//	private static final Modifier WORLDBOUND = new Modifier("worldbound", 1); Modifiers with max level one don't work.
-	private static final Modifier REINFORCED = new Modifier("reinforced", 5);
+	private static final int GLOBAL = 0;
+	private static final int MELEE = 1;
+	private static final int BONUS = 2;
+	private static final int PICKAXE = 3;
+	private static final int RANGED = 4;
+	private static final int CROSSBOW = 5;
+	private static final int ARMOR = 6;
+	private static final int HELMET = 7;
+	private static final int CHESTPLATE = 8;
+	private static final int LEGGINGS = 9;
+	private static final int BOOTS = 10;
+
+	//	private static final Modifier WORLDBOUND = new Modifier("worldbound", 1); Modifiers with max level one don't work.
+
 	private static final Modifier MAGNETIC = new Modifier("magnetic", 5);
+	private static final Modifier REINFORCED = new Modifier("reinforced", 5);
 
 	private static final Modifier FIERY = new Modifier("fiery", 5);
 	private static final Modifier FREEZING = new Modifier("freezing", 3);
@@ -46,27 +64,27 @@ public class Modifier {
 	private static final Modifier QUICK_CHARGE = new Modifier("quick_charge", 3);
 
 	//Modifiers that can go on any tool
-	public static final Modifier[] GLOBAL_MODIFIERS = new Modifier[]{MAGNETIC, REINFORCED};
+	public static final List<Modifier> GLOBAL_MODIFIERS = new ArrayList<>(Arrays.asList(MAGNETIC, REINFORCED));
 	//Modifiers that can only go on melee tools
-	public static final Modifier[] MELEE_MODIFIERS = new Modifier[]{FIERY, FREEZING, KNOCKBACK, NECROTIC, PADDED, SEVERING, SWEEPING_EDGE};
+	public static final List<Modifier> MELEE_MODIFIERS = new ArrayList<>(Arrays.asList(FIERY, FREEZING, KNOCKBACK, NECROTIC, PADDED, SEVERING, SWEEPING_EDGE));
 	//Modifiers that can only go on weapons (melee, ranged, etc)
-	public static final Modifier[] BONUS_DAMAGE_MODIFIERS = new Modifier[]{ANTIAQUATIC, BANE_OF_SPIDERS, COOLING, KILLAGER, PIERCE, SHARPNESS, SMITE, SWIFTSTRIKE};
+	public static final List<Modifier> BONUS_DAMAGE_MODIFIERS = new ArrayList<>(Arrays.asList(ANTIAQUATIC, BANE_OF_SPIDERS, COOLING, KILLAGER, PIERCE, SHARPNESS, SMITE, SWIFTSTRIKE));
 	//Modifiers that can only go on pickaxes
-	public static final Modifier[] PICKAXE_MODIFIERS = new Modifier[]{HASTE, BLASTING, HYDRAULIC, LIGHTSPEED};
+	public static final List<Modifier> PICKAXE_MODIFIERS = new ArrayList<>(Arrays.asList(HASTE, BLASTING, HYDRAULIC, LIGHTSPEED));
 	//Modifiers that can only go on ranged weapons (bows, crossbows, etc)
-	public static final Modifier[] RANGED_MODIFIERS = new Modifier[]{FIERY, FREEZING, IMPALING, NECROTIC, PIERCE, POWER, PUNCH};
+	public static final List<Modifier> RANGED_MODIFIERS = new ArrayList<>(Arrays.asList(FIERY, FREEZING, IMPALING, NECROTIC, PIERCE, POWER, PUNCH));
 	//Modifiers that can only go on crossbows
-	public static final Modifier[] CROSSBOW_MODIFIERS = new Modifier[]{QUICK_CHARGE};
+	public static final List<Modifier> CROSSBOW_MODIFIERS = new ArrayList<>(List.of(QUICK_CHARGE));
 	//Modifiers that can only go on armor
-	public static final Modifier[] ARMOR_MODIFIERS = new Modifier[]{FIERY, FREEZING, RICOCHET, SPRINGY, THORNS};
+	public static final List<Modifier> ARMOR_MODIFIERS = new ArrayList<>(Arrays.asList(FIERY, FREEZING, RICOCHET, SPRINGY, THORNS));
 	//Modifiers that can only go on helmets
-	public static final Modifier[] HELMET_MODIFIERS = new Modifier[]{RESPIRATION};
+	public static final List<Modifier> HELMET_MODIFIERS = new ArrayList<>(List.of(RESPIRATION));
 	//Modifiers that can only go on chestplates
-	public static final Modifier[] CHESTPLATE_MODIFIERS = new Modifier[]{HASTE, KNOCKBACK};
+	public static final List<Modifier> CHESTPLATE_MODIFIERS = new ArrayList<>(Arrays.asList(HASTE, KNOCKBACK));
 	//Modifiers that can only go on leggings
-	public static final Modifier[] LEGGINGS_MODIFIERS = new Modifier[]{LEAPING, SPEEDY};
+	public static final List<Modifier> LEGGINGS_MODIFIERS = new ArrayList<>(Arrays.asList(LEAPING, SPEEDY));
 	//Modifiers that can only go on boots
-	public static final Modifier[] BOOTS_MODIFIERS = new Modifier[]{DEPTH_STRIDER, FEATHER_FALLING, LIGHTSPEED_ARMOR, SOUL_SPEED};
+	public static final List<Modifier> BOOTS_MODIFIERS = new ArrayList<>(Arrays.asList(DEPTH_STRIDER, FEATHER_FALLING, LIGHTSPEED_ARMOR, SOUL_SPEED));
 
 	private final String name;
 	private final int max;
@@ -84,5 +102,29 @@ public class Modifier {
 	}
 	public Component getMessage() {
 		return this.message;
+	}
+
+	/**
+	 * Adds a new Modifier to its appropriate ArrayList so that it can be added by the tool leveling system.
+	 * <p>
+	 * Use static constants accessed via the Modifier class for easier access.
+	 *
+	 * @param modifierType An integer from 0-10 that represents the ArrayList that the Modifier should be added to.
+	 */
+	public void register(int modifierType) {
+		switch (modifierType) {
+			case 0 -> GLOBAL_MODIFIERS.add(this);
+			case 1 -> MELEE_MODIFIERS.add(this);
+			case 2 -> BONUS_DAMAGE_MODIFIERS.add(this);
+			case 3 -> PICKAXE_MODIFIERS.add(this);
+			case 4 -> RANGED_MODIFIERS.add(this);
+			case 5 -> CROSSBOW_MODIFIERS.add(this);
+			case 6 -> ARMOR_MODIFIERS.add(this);
+			case 7 -> HELMET_MODIFIERS.add(this);
+			case 8 -> CHESTPLATE_MODIFIERS.add(this);
+			case 9 -> LEGGINGS_MODIFIERS.add(this);
+			case 10 -> BOOTS_MODIFIERS.add(this);
+			default -> throw new IllegalStateException("Unexpected value: " + modifierType);
+		};
 	}
 }

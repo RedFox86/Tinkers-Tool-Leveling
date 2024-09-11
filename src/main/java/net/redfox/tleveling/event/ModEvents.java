@@ -1,6 +1,7 @@
 package net.redfox.tleveling.event;
 
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.settings.KeyModifier;
@@ -32,7 +33,7 @@ public class ModEvents {
 					return;
 				}
 				blockSkip = true;
-				ToolEventHandler.handleMiningEvent(event);
+				new ToolLeveling(player, event.getState());
 			}
 		}
 		@SubscribeEvent
@@ -44,7 +45,7 @@ public class ModEvents {
 				return;
 			}
 			if (player.getMainHandItem().is(ModTags.Items.TINKERS_WEAPONS)) {
-				ToolEventHandler.handleAttackEvent(player, event.getEntity());
+				new ToolLeveling(player, event.getEntity());
 			}
 		}
 		@SubscribeEvent
@@ -52,7 +53,10 @@ public class ModEvents {
 			if (!(event.getEntity() instanceof Player player)) {
 				return;
 			}
-			ToolEventHandler.handleArmorEvent(player, event.getAmount());
+			new ToolLeveling(player, event.getAmount(), player.getItemBySlot(EquipmentSlot.HEAD));
+			new ToolLeveling(player, event.getAmount(), player.getItemBySlot(EquipmentSlot.CHEST));
+			new ToolLeveling(player, event.getAmount(), player.getItemBySlot(EquipmentSlot.LEGS));
+			new ToolLeveling(player, event.getAmount(), player.getItemBySlot(EquipmentSlot.FEET));
 		}
 		@SubscribeEvent
 		public static void onToolTip(ItemTooltipEvent event) {

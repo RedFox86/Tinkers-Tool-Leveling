@@ -6,7 +6,6 @@ import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.redfox.tleveling.leveling.ToolExpHandler;
 import net.redfox.tleveling.util.ModTags;
 
 public class LevelGetCommand {
@@ -23,7 +22,7 @@ public class LevelGetCommand {
 			source.sendFailure(Component.literal("This item does not have a tool level!"));
 			return -1;
 		}
-		int level = ToolExpHandler.loadLevelOnTool(stack).getLevel();
+		int level = stack.getOrCreateTag().getInt("toolLevel");
 		source.sendSystemMessage(Component.literal("This tool is currently level " + level));
 		return level;
 	}

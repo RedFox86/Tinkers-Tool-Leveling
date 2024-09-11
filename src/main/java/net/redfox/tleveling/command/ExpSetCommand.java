@@ -1,5 +1,6 @@
 package net.redfox.tleveling.command;
 
+import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.context.CommandContext;
@@ -9,7 +10,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.redfox.tleveling.util.ModTags;
-import net.redfox.tleveling.util.NBTHandler;
 
 public class ExpSetCommand {
 	public ExpSetCommand(CommandDispatcher<CommandSourceStack> dispatcher) {
@@ -28,7 +28,7 @@ public class ExpSetCommand {
 		}
 		double value = IntegerArgumentType.getInteger(context, "value");
 		source.sendSystemMessage(Component.literal("Set tool exp to " + value + "."));
-		NBTHandler.saveDoubleNBT(stack.getOrCreateTag(), value, "toolExp");
-		return 1;
+		stack.getOrCreateTag().putDouble("toolExp", value);
+		return Command.SINGLE_SUCCESS;
 	}
 }
