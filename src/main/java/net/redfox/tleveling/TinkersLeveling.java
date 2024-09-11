@@ -12,7 +12,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.redfox.tleveling.config.TinkersLevelingCommonConfigs;
-import net.redfox.tleveling.leveling.Modifier;
 import net.redfox.tleveling.sound.ModSounds;
 import org.slf4j.Logger;
 

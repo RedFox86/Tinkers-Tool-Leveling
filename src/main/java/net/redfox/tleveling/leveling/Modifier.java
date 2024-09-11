@@ -125,6 +125,6 @@ public class Modifier {
 			case 9 -> LEGGINGS_MODIFIERS.add(this);
 			case 10 -> BOOTS_MODIFIERS.add(this);
 			default -> throw new IllegalStateException("Unexpected value: " + modifierType);
-		};
+		}
 	}
 }
