@@ -23,7 +23,7 @@ import java.util.Random;
 public class ToolLeveling {
 	private final Player player;
 	private final ItemStack stack;
-	private final double currentExp;
+	private double currentExp;
 	private final int requiredExp;
 	private final ToolLevel level;
 	private float damageAmount;
@@ -41,6 +41,12 @@ public class ToolLeveling {
 	public ToolLeveling(Player IPlayer, BlockState IState) {
 		this.player = IPlayer;
 		this.stack = player.getMainHandItem();
+		if (!stack.is(ModTags.Items.TINKERS_MINING)) {
+			this.entity = null;
+			this.level = null;
+			this.requiredExp = 0;
+			return;
+		}
 		this.state = IState;
 		this.currentExp = stack.getOrCreateTag().getDouble("toolExp");
 		this.level = ToolLevel.TOOL_LEVELS[stack.getOrCreateTag().getInt("toolLevel")];
@@ -50,6 +56,12 @@ public class ToolLeveling {
 	public ToolLeveling(Player IPlayer, Entity IEntity) {
 		this.player = IPlayer;
 		this.stack = player.getMainHandItem();
+		if (!stack.is(ModTags.Items.TINKERS_WEAPONS)) {
+			this.entity = null;
+			this.level = null;
+			this.requiredExp = 0;
+			return;
+		}
 		this.entity = IEntity;
 		this.currentExp = stack.getOrCreateTag().getDouble("toolExp");
 		this.level = ToolLevel.TOOL_LEVELS[stack.getOrCreateTag().getInt("toolLevel")];
@@ -57,6 +69,13 @@ public class ToolLeveling {
 		handleAttackEvent();
 	}
 	public ToolLeveling(Player IPlayer, float IAmount, ItemStack IStack) {
+		if (!IStack.is(ModTags.Items.TINKERS_ARMOR) || IPlayer.isDeadOrDying()) {
+			this.player = null;
+			this.stack = null;
+			this.level = null;
+			this.requiredExp = 0;
+			return;
+		}
 		this.player = IPlayer;
 		this.stack = IStack;
 		this.damageAmount = IAmount * 3;
@@ -178,23 +197,23 @@ public class ToolLeveling {
 	}
 	
 	public void handleMiningEvent() {
-		double exp = getExpFromBlockState(this.state) + currentExp;
-		this.stack.getOrCreateTag().putDouble("toolExp", exp);
-		if (exp >= requiredExp && !level.isMaxLevel()) {
+		currentExp = getExpFromBlockState(this.state) + currentExp;
+		this.stack.getOrCreateTag().putDouble("toolExp", currentExp);
+		if (currentExp >= requiredExp && !level.isMaxLevel()) {
 			new ToolLeveling(player);
 		}
 	}
 	public void handleAttackEvent() {
-		double exp = getExpFromEntity(entity) + currentExp;
-		stack.getOrCreateTag().putDouble("toolExp", exp);
-		if (exp >= requiredExp && !level.isMaxLevel()) {
+		currentExp = getExpFromEntity(entity) + currentExp;
+		stack.getOrCreateTag().putDouble("toolExp", currentExp);
+		if (currentExp >= requiredExp && !level.isMaxLevel()) {
 			new ToolLeveling(player);
 		}
 	}
 	private void handleSpecificArmorEvent() {
-		double exp = getRandomBonus(damageAmount) + currentExp;
-		stack.getOrCreateTag().putDouble("toolExp", exp);
-		if (exp >= requiredExp && !level.isMaxLevel()) {
+		currentExp = getRandomBonus(damageAmount) + currentExp;
+		stack.getOrCreateTag().putDouble("toolExp", currentExp);
+		if (currentExp >= requiredExp && !level.isMaxLevel()) {
 			toolLevelUp(levelUpModifier());
 		}
 	}
