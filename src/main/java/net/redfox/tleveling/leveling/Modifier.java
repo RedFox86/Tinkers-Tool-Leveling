@@ -1,5 +1,6 @@
 package net.redfox.tleveling.leveling;
 
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 
 import java.util.ArrayList;
@@ -85,7 +86,16 @@ public class Modifier {
 	public static final List<Modifier> LEGGINGS_MODIFIERS = new ArrayList<>(Arrays.asList(LEAPING, SPEEDY));
 	//Modifiers that can only go on boots
 	public static final List<Modifier> BOOTS_MODIFIERS = new ArrayList<>(Arrays.asList(DEPTH_STRIDER, FEATHER_FALLING, LIGHTSPEED_ARMOR, SOUL_SPEED));
-
+	
+	public static final List<Modifier> ALL_MODIFIERS = new ArrayList<>(Arrays.asList(
+			MAGNETIC, REINFORCED, FIERY, FREEZING, KNOCKBACK, NECROTIC, PADDED,
+			SEVERING, SWEEPING_EDGE, ANTIAQUATIC, BANE_OF_SPIDERS, COOLING, KILLAGER,
+			PIERCE, SHARPNESS, SMITE, SWIFTSTRIKE, HASTE, BLASTING, HYDRAULIC,
+			LIGHTSPEED, RICOCHET, SPRINGY, THORNS, RESPIRATION, LEAPING, SPEEDY,
+			DEPTH_STRIDER, FEATHER_FALLING, LIGHTSPEED_ARMOR, SOUL_SPEED, IMPALING,
+			POWER, PUNCH, QUICK_CHARGE
+	));
+	
 	private final String name;
 	private final int max;
 	private final Component message;
@@ -126,5 +136,20 @@ public class Modifier {
 			case 10 -> BOOTS_MODIFIERS.add(this);
 			default -> throw new IllegalStateException("Unexpected value: " + modifierType);
 		}
+		ALL_MODIFIERS.add(this);
+	}
+	public static Modifier getModifierFromID(String id) {
+		for (Modifier modifier : ALL_MODIFIERS) {
+			if (id.equals(modifier.getName())) {
+				return modifier;
+			}
+		}
+		throw new NullPointerException();
+	}
+	public static CompoundTag createCompoundTag(String name, int level) {
+		CompoundTag modifierUpgrade = new CompoundTag();
+		modifierUpgrade.putString("name", "tconstruct:" + name);
+		modifierUpgrade.putInt("level", level);
+		return modifierUpgrade;
 	}
 }

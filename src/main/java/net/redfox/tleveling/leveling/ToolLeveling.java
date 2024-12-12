@@ -172,10 +172,7 @@ public class ToolLeveling {
 		return contains;
 	}
 	private CompoundTag getModifierUpgrade(Modifier modifier, int level) {
-		CompoundTag modifierUpgrade = new CompoundTag();
-		modifierUpgrade.putString("name", "tconstruct:" + modifier.getName());
-		modifierUpgrade.putInt("level", level);
-		return modifierUpgrade;
+	
 	}
 	public void toolLevelUp(Modifier modifier) {
 		stack.getOrCreateTag().putDouble("toolExp", currentExp-requiredExp);

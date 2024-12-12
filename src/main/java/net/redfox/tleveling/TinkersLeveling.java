@@ -15,9 +15,12 @@ import net.redfox.tleveling.config.TinkersLevelingCommonConfigs;
 import net.redfox.tleveling.sound.ModSounds;
 import org.slf4j.Logger;
 
+import java.util.Random;
+
 @Mod(TinkersLeveling.MOD_ID)
 public class TinkersLeveling {
 	public static final String MOD_ID = "tleveling";
+	public static final Random RANDOM = new Random();
 	private static final Logger LOGGER = LogUtils.getLogger();
 
 	public TinkersLeveling() {
