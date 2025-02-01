@@ -17,13 +17,13 @@ public class TinkersLevelingCommonConfigs {
 	static {
 		BUILDER.push("Client Configs for Tinker's Tool Leveling 2");
 
-		PICKAXE_EXP_MULTIPLIER = BUILDER.comment("The multipler for the exp granted to a mining tool after each block break. Default is 1.0")
+		PICKAXE_EXP_MULTIPLIER = BUILDER.comment("The multiplier for the exp granted to a mining tool after each block break. Default is 1.0")
 				.define("Exp Per Block", 1.0d);
-		KILL_EXP_MULTIPLIER = BUILDER.comment("The multipler for the exp granted to a melee weapon after each block break. Default is 1.0")
+		KILL_EXP_MULTIPLIER = BUILDER.comment("The multiplier for the exp granted to a melee weapon after each block break. Default is 1.0")
 				.define("Exp Per Melee Kill", 1.0d);
-		ARMOR_EXP_MULTIPLIER = BUILDER.comment("The multipler for the exp granted to an armor piece after each block break. Default is 1.0")
+		ARMOR_EXP_MULTIPLIER = BUILDER.comment("The multiplier for the exp granted to an armor piece after each block break. Default is 1.0")
 				.define("Exp Per Armor Hit", 1.0d);
-		ADMIN_MINING_EXP = BUILDER.comment("Whether or not breaking bedrock gives 100,000 exp for a mining tool. Primarily used for admin purpouses. Default is true")
+		ADMIN_MINING_EXP = BUILDER.comment("Whether or not breaking bedrock gives 100,000 exp for a mining tool. Primarily used for admin purposes. Default is true")
 				.define("Admin Exp", true);
 		LEVEL_BONUS_MODIFIER = BUILDER.comment("The amount of levels between each bonus modifier. Set to 0 to disable bonus modifiers. Default is 3")
 				.defineInRange("Levels Between Bonus Modifiers", 3, 0, 11);
