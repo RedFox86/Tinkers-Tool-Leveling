@@ -20,18 +20,18 @@ public class TinkersLeveling {
 	public static final String MOD_ID = "tleveling";
 	private static final Logger LOGGER = LogUtils.getLogger();
 
-	public TinkersLeveling() {
-		IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+	public TinkersLeveling(FMLJavaModLoadingContext context) {
+		IEventBus modEventBus = context.getModEventBus();
 		LOGGER.debug("Eventbus registered.");
 		modEventBus.addListener(this::commonSetup);
 
-//		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, TinkersLevelingClientConfigs.SPEC, "tinkersleveling-client.toml");
-		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, TinkersLevelingCommonConfigs.SPEC, "tinkersleveling-common.toml");
+//		context.registerConfig(ModConfig.Type.CLIENT, TinkersLevelingClientConfigs.SPEC, "tinkersleveling-client.toml");
+		context.registerConfig(ModConfig.Type.COMMON, TinkersLevelingCommonConfigs.SPEC, "tinkersleveling-common.toml");
 
 		MinecraftForge.EVENT_BUS.register(this);
 		ModSounds.register(modEventBus);
 
-		//Look at the Modifer class to learn how to add new modifiers
+		//Look at the Modifier class to learn how to add new modifiers
 	}
 
 	public static void debugLog(String msg) {
