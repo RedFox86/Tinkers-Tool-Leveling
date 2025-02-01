@@ -3,11 +3,13 @@ package net.redfox.tleveling.util;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.redfox.tleveling.TinkersLeveling;
 
 public class ModTags {
@@ -46,9 +48,8 @@ public class ModTags {
 		public static final TagKey<EntityType<?>> EXCLUDED_ENTITIES = tag("excluded_entities");
 		public static final TagKey<EntityType<?>> BOSS_ENTITIES = tag("boss_entities");
 		//Why must EntityTypeTags create method be private? Now I have no consistancy :(
-
 		private static TagKey<EntityType<?>> tag(String name) {
-			return TagKey.create(Registry.ENTITY_TYPE_REGISTRY, new ResourceLocation(TinkersLeveling.MOD_ID, name));
+			return TagKey.create(ForgeRegistries.ENTITY_TYPES.getRegistryKey(), new ResourceLocation(TinkersLeveling.MOD_ID, name));
 		}
 	}
 }

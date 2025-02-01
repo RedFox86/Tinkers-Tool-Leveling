@@ -15,7 +15,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.server.command.ConfigCommand;
 import net.redfox.tleveling.TinkersLeveling;
 import net.redfox.tleveling.command.*;
-import net.redfox.tleveling.leveling.*;
+import net.redfox.tleveling.leveling.ToolLeveling;
+import net.redfox.tleveling.leveling.TooltipHandler;
 import net.redfox.tleveling.util.ModTags;
 
 import java.util.List;

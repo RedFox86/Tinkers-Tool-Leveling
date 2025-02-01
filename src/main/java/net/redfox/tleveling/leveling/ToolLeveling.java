@@ -190,7 +190,7 @@ public class ToolLeveling {
 			}
 		}
 		player.sendSystemMessage(modifier.getMessage());
-		player.getLevel().playSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.LEVEL_CHIME.get(), SoundSource.MASTER, 1f, 1f);
+		player.level().playSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.LEVEL_CHIME.get(), SoundSource.MASTER, 1f, 1f);
 		if (currentExp - requiredExp > MathHandler.getRequiredExp(level.getLevel()+1)) {
 			new ToolLeveling(this.player);
 		}

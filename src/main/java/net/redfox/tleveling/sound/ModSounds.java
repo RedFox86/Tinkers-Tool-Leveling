@@ -1,7 +1,6 @@
 package net.redfox.tleveling.sound;
 
 import net.minecraft.resources.ResourceLocation;
-
 import net.minecraft.sounds.SoundEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -16,7 +15,7 @@ public class ModSounds {
 
 	private static RegistryObject<SoundEvent> registerSoundEvent(String name) {
 		TinkersLeveling.debugLog("Sound registered: " + name);
-		return SOUND_EVENTS.register(name, () -> new SoundEvent(new ResourceLocation(TinkersLeveling.MOD_ID, name)));
+		return SOUND_EVENTS.register(name, () -> SoundEvent.createFixedRangeEvent(new ResourceLocation(TinkersLeveling.MOD_ID, name), 5f));
 	}
 
 	public static void register(IEventBus eventBus) {

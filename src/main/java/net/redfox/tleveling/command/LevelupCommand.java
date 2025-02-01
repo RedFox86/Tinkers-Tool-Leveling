@@ -8,7 +8,8 @@ import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.redfox.tleveling.leveling.*;
+import net.redfox.tleveling.leveling.ToolLevel;
+import net.redfox.tleveling.leveling.ToolLeveling;
 import net.redfox.tleveling.util.MathHandler;
 import net.redfox.tleveling.util.ModTags;
 
