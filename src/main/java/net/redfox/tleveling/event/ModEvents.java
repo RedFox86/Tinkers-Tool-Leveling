@@ -1,5 +1,7 @@
 package net.redfox.tleveling.event;
 
+import com.mojang.blaze3d.platform.InputConstants;
+import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
@@ -67,13 +69,18 @@ public class ModEvents {
 			if (!event.getItemStack().is(ModTags.Items.ALL_TOOLS)) {
 				return;
 			}
-			KeyModifier heldKey = KeyModifier.getActiveModifier();
-			if (heldKey == KeyModifier.CONTROL || heldKey == KeyModifier.SHIFT) {
+			long window = Minecraft.getInstance().getWindow().getWindow();
+			if (InputConstants.isKeyDown(window, InputConstants.KEY_LSHIFT) ||
+					InputConstants.isKeyDown(window, InputConstants.KEY_RSHIFT) ||
+					InputConstants.isKeyDown(window, InputConstants.KEY_LCONTROL) ||
+					InputConstants.isKeyDown(window, InputConstants.KEY_RCONTROL)
+			) {
 				return;
 			}
 			ItemStack stack = event.getItemStack();
 			List<Component> tooltip = event.getToolTip();
-			if (heldKey == KeyModifier.ALT) {
+			if (InputConstants.isKeyDown(window, InputConstants.KEY_LALT) ||
+					InputConstants.isKeyDown(window, InputConstants.KEY_RALT)) {
 				TooltipHandler.handleExpTooltip(event, tooltip.get(0), stack);
 			} else {
 				TooltipHandler.appendAltTooltip(tooltip);
