@@ -69,7 +69,7 @@ public class ToolLeveling {
 		handleAttackEvent();
 	}
 	public ToolLeveling(Player IPlayer, float IAmount, ItemStack IStack) {
-		if (!IStack.is(ModTags.Items.TINKERS_ARMOR) || IPlayer.isDeadOrDying()) {
+		if (!IStack.is(ModTags.Items.TINKERS_ARMOR) || IPlayer.isDeadOrDying() || IAmount >= 100000) {
 			this.player = null;
 			this.stack = null;
 			this.level = null;
