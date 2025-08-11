@@ -31,7 +31,6 @@ The modifier worktable is a recently added part of Tinker's Construct that allow
 
 \- There is also a server config in the config folder for your instance.
 
-
 "Fabric pls!!"
 
 \- While I do appreciate fabric, as there is not an __official__ Tinker's Construct port for fabric, I will not create a fabric version.
@@ -39,3 +38,5 @@ The modifier worktable is a recently added part of Tinker's Construct that allow
 **Credits**
 
 \- Level up sound effect, level names, base icon, and level up messages from the original mod: [Tinkers' Tool Leveling](https://github.com/SlimeKnights/TinkersToolLeveling)
+
+Report bugs on the issue tracker at [github.com/RedFox86/Tinkers-Tool-Leveling](https://github.com/RedFox86/The-Spice-Of-Life-2/issues)
