@@ -111,7 +111,6 @@ public class ToolLeveling {
 			}
 		} else {
 			modifier = chooseModifier(new Modifier[]{});
-			TinkersLeveling.warnLog("A tool isn't in any tag! " + stack.getDisplayName().getString());
 		}
 		if (modifier == null) {
 			return null;
@@ -228,7 +227,6 @@ public class ToolLeveling {
 		} else if (state.is(ModTags.Blocks.EXP_PICKAXE_ADMIN)) {
 			if (TinkersLevelingCommonConfigs.ADMIN_MINING_EXP.get()) {
 				exp = 100000;
-				TinkersLeveling.warnLog("Admin only mining exp was granted. Was this intentional?");
 			} else {
 				exp = 1;
 			}

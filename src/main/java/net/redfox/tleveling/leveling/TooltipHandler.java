@@ -40,8 +40,6 @@ public class TooltipHandler {
 		}
 		if (index != -1) {
 			tooltip.add(index+2, Component.translatable("tooltip.tleveling.hold_alt", Component.translatable("key.tleveling.alt").withStyle(s -> s.withColor(TextColor.parseColor("#FF55FF"))).withStyle(s -> s.withItalic(true))));
-		} else {
-			TinkersLeveling.warnLog("The tool didn't have a shift or ctrl! Could not place the tooltip.");
 		}
 	}
 	public static void handleExpTooltip(ItemTooltipEvent event, Component itemName, ItemStack stack) {
