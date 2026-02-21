@@ -22,10 +22,10 @@ public class ToolLevel {
 	private final int level;
 	private final String name;
 	private final String id;
-	public ToolLevel(int ILevel, String IName, String IID) {
-		this.level = ILevel;
-		this.name = IName;
-		this.id = IID;
+	public ToolLevel(int level, String name, String id) {
+		this.level = level;
+		this.name = name;
+		this.id = id;
 	}
 	public int getLevel() {
 		return this.level;
@@ -38,9 +38,6 @@ public class ToolLevel {
 	}
 	public String getName() {
 		return this.name;
-	}
-	public String getId() {
-		return this.id;
 	}
 	public boolean isMaxLevel() {
 		return this.level == 11;

@@ -8,17 +8,17 @@ import java.util.List;
 
 @SuppressWarnings("unused")
 public class Modifier {
-	private static final int GLOBAL = 0;
-	private static final int MELEE = 1;
-	private static final int BONUS = 2;
-	private static final int PICKAXE = 3;
-	private static final int RANGED = 4;
-	private static final int CROSSBOW = 5;
-	private static final int ARMOR = 6;
-	private static final int HELMET = 7;
-	private static final int CHESTPLATE = 8;
-	private static final int LEGGINGS = 9;
-	private static final int BOOTS = 10;
+	public static final int GLOBAL = 0;
+	public static final int MELEE = 1;
+	public static final int BONUS = 2;
+	public static final int PICKAXE = 3;
+	public static final int RANGED = 4;
+	public static final int CROSSBOW = 5;
+	public static final int ARMOR = 6;
+	public static final int HELMET = 7;
+	public static final int CHESTPLATE = 8;
+	public static final int LEGGINGS = 9;
+	public static final int BOOTS = 10;
 
 	//	private static final Modifier WORLDBOUND = new Modifier("worldbound", 1); Modifiers with max level one don't work.
 
@@ -89,10 +89,10 @@ public class Modifier {
 	private final String name;
 	private final int max;
 	private final Component message;
-	public Modifier(String IName, int Imax) {
-		this.max = Imax;
-		this.name = IName;
-		this.message = Component.translatable("message.tleveling."+name).withStyle(s -> s.withColor(TooltipHandler.DARK_AQUA));
+	public Modifier(String name, int max) {
+		this.max = max;
+		this.name = name;
+		this.message = Component.translatable("message.tleveling."+ this.name).withStyle(s -> s.withColor(TooltipHandler.DARK_AQUA));
 	}
 	public String getName() {
 		return this.name;
@@ -124,7 +124,7 @@ public class Modifier {
 			case 8 -> CHESTPLATE_MODIFIERS.add(this);
 			case 9 -> LEGGINGS_MODIFIERS.add(this);
 			case 10 -> BOOTS_MODIFIERS.add(this);
-			default -> throw new IllegalStateException("Unexpected value: " + modifierType);
+			default -> throw new IllegalArgumentException("Unexpected value: " + modifierType);
 		}
 	}
 }

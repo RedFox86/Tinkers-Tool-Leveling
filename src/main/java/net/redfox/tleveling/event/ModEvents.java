@@ -3,7 +3,6 @@ package net.redfox.tleveling.event;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.settings.KeyModifier;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -50,9 +49,7 @@ public class ModEvents {
 		}
 		@SubscribeEvent
 		public static void onTakeDamage(LivingHurtEvent event) {
-			if (!(event.getEntity() instanceof Player player)) {
-				return;
-			}
+			if (!(event.getEntity() instanceof Player player)) return;
 			new ToolLeveling(player, event.getAmount(), player.getItemBySlot(EquipmentSlot.HEAD));
 			new ToolLeveling(player, event.getAmount(), player.getItemBySlot(EquipmentSlot.CHEST));
 			new ToolLeveling(player, event.getAmount(), player.getItemBySlot(EquipmentSlot.LEGS));
@@ -60,20 +57,14 @@ public class ModEvents {
 		}
 		@SubscribeEvent
 		public static void onToolTip(ItemTooltipEvent event) {
-			if (event.getEntity() == null) {
-				return;
-			}
-			if (!event.getItemStack().is(ModTags.Items.ALL_TOOLS)) {
-				return;
-			}
+			if (event.getEntity() == null) return;
+			if (!event.getItemStack().is(ModTags.Items.ALL_TOOLS)) return;
 			KeyModifier heldKey = KeyModifier.getActiveModifier();
-			if (heldKey == KeyModifier.CONTROL || heldKey == KeyModifier.SHIFT) {
-				return;
-			}
-			ItemStack stack = event.getItemStack();
+			if (heldKey == KeyModifier.CONTROL || heldKey == KeyModifier.SHIFT) return;
+
 			List<Component> tooltip = event.getToolTip();
 			if (heldKey == KeyModifier.ALT) {
-				TooltipHandler.handleExpTooltip(event, tooltip.get(0), stack);
+				TooltipHandler.handleExpTooltip(tooltip, event.getItemStack());
 			} else {
 				TooltipHandler.appendAltTooltip(tooltip);
 			}
