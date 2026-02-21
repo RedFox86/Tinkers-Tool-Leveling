@@ -18,11 +18,6 @@ public class TinkersLeveling {
 	public TinkersLeveling(FMLJavaModLoadingContext context) {
 		IEventBus modEventBus = context.getModEventBus();
 
-		context.registerConfig(ModConfig.Type.COMMON, TinkersLevelingCommonConfigs.SPEC, "tinkersleveling-common.toml");
-
 		MinecraftForge.EVENT_BUS.register(this);
-		ModSounds.register(modEventBus);
-
-		//Look at the Modifier class to learn how to add new modifiers
-	}
+  }
 }
