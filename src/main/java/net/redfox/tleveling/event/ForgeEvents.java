@@ -26,7 +26,7 @@ public class ForgeEvents {
       long window = Minecraft.getInstance().getWindow().getWindow();
       if (InputConstants.isKeyDown(window, InputConstants.KEY_LSHIFT) || InputConstants.isKeyDown(window, InputConstants.KEY_RSHIFT) || InputConstants.isKeyDown(window, InputConstants.KEY_LCONTROL) || InputConstants.isKeyDown(window, InputConstants.KEY_RCONTROL)) return;
       if (InputConstants.isKeyDown(window, ModKeybinds.SHOW_EXP_KEY.getKey().getValue())) {
-        TooltipDisplay.insertExpTooltip(event.getToolTip(), event.getEntity(), event.getItemStack());
+        TooltipDisplay.insertExpTooltip(event.getToolTip(), event.getItemStack());
       } else {
         TooltipDisplay.insertAltTooltip(event.getToolTip());
       }

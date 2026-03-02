@@ -1,0 +1,46 @@
+{
+  "modules": [
+    {
+      "type": "tconstruct:base_stats",
+      "stats": {
+        "tconstruct:durability": 672.0
+      }
+    },
+    {
+      "type": "tconstruct:multiply_stats",
+      "multipliers": {
+        "tconstruct:attack_damage": 0.4
+      }
+    },
+    {
+      "type": "tconstruct:modifier_slots",
+      "slots": {
+        "abilities": 1,
+        "upgrades": 5
+      }
+    },
+    {
+      "type": "tconstruct:material_repair",
+      "durability": 67,
+      "material": "tconstruct:enderslime"
+    },
+    {
+      "type": "tconstruct:material_repair",
+      "durability": 672,
+      "material": "tconstruct:phantom"
+    },
+    {
+      "type": "tconstruct:traits",
+      "traits": [
+        {
+          "level": 1,
+          "name": "tconstruct:overslime_friend"
+        },
+        {
+          "level": 1,
+          "name": "tconstruct:wings"
+        }
+      ]
+    }
+  ]
+}

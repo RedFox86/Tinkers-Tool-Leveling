@@ -31,16 +31,41 @@ public class TooltipDisplay {
     tooltip.add(index, Component.translatable("tooltip.tleveling.hold_alt", appendComponent.withStyle(ChatFormatting.LIGHT_PURPLE, ChatFormatting.ITALIC)));
   }
 
-  public static void insertExpTooltip(List<Component> tooltip, Player player, ItemStack stack) {
+  public static void insertExpTooltip(List<Component> tooltip, ItemStack stack) {
     double currentExp = ToolExp.getCurrentExp(stack);
     double neededExp = ToolExp.getRequiredExp(ToolExp.getToolLevel(stack)+1);
-    double percentage = (currentExp / neededExp) * 100;
+    double percentage = Math.round((currentExp / neededExp)*100);
+    Component percentageComponent = Component.literal(percentage + "%").withStyle(switch ((int) (percentage / 25)) {
+      case 0 -> ChatFormatting.RED;
+      case 1 -> ChatFormatting.YELLOW;
+      case 2 -> ChatFormatting.GREEN;
+      case 3 -> ChatFormatting.DARK_GREEN;
+      default -> ChatFormatting.WHITE;
+    });
 
     int toolLevel = ToolExp.getToolLevel(stack);
 
     tooltip.subList(1, tooltip.size()).clear();
 
-    tooltip.add(1, Component.translatable("tooltip.tleveling.tool_level", ToolLevel.LEVELS[toolLevel-1].getComponent(), Component.literal("(" + toolLevel + ")").withStyle(ChatFormatting.DARK_GRAY)));
-    tooltip.add(2, Component.translatable("tooltip.tleveling.tool_exp", Component.literal(currentExp+"/"+neededExp), Component.literal(percentage+"%")));
+    tooltip.add(Component.empty());
+    tooltip.add(Component.translatable("tooltip.tleveling.tool_level", ToolLevel.LEVELS[toolLevel-1].getComponent(), Component.literal("(" + toolLevel + ")").withStyle(ChatFormatting.DARK_GRAY)));
+    tooltip.add(Component.translatable("tooltip.tleveling.tool_exp", Component.literal(formatNumber(currentExp)+"/"+formatNumber(neededExp)), percentageComponent));
+  }
+
+  private static String formatNumber(double num) {
+    String raw = String.format("%.2f", num);
+    String[] parts = raw.split("\\.");
+    String number = parts[0];
+    String result = "";
+    int j = 0;
+    for (int i = number.length() - 1; i >= 0; i--) {
+      result = number.charAt(i) + result;
+      j++;
+      if (j == 3 && i > 0) {
+        result = "," + result;
+        j = 0;
+      }
+    }
+    return result + "." + parts[1];
   }
 }
