@@ -1,12 +1,14 @@
 package net.redfox.tleveling.leveling;
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.redfox.tleveling.config.JsonConfigReader;
 import net.redfox.tleveling.util.ModSounds;
+import oshi.util.tuples.Pair;
 import slimeknights.tconstruct.common.TinkerTags;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.modifiers.ModifierId;
@@ -16,6 +18,8 @@ import slimeknights.tconstruct.tables.block.entity.table.TinkerStationBlockEntit
 import slimeknights.tconstruct.tools.TinkerModifiers;
 import slimeknights.tconstruct.tools.data.ModifierIds;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class ToolExp {
@@ -70,5 +74,35 @@ public class ToolExp {
     player.playSound(ModSounds.LEVEL_CHIME.get());
     setToolLevel(stack, currentLevel);
     setToolExp(stack, currentExp);
+  }
+
+  private static List<Pair<ModifierId, Double>> getPossibleModifiers(ItemStack stack) {
+    List<ModifierId> modifiers = new ArrayList<>();
+    ToolStack tool = ToolStack.from(stack);
+    List<ModifierEntry> toolModifiers = tool.getModifierList();
+
+    for (JsonElement element : MODIFIERS) {
+      if (element.getAsJsonObject().get("item").getAsString().equals(stack.getItemHolder().unwrapKey().get().location().toString())) {
+        for (JsonElement modifier : element.getAsJsonObject().get("modifiers").getAsJsonArray()) {
+          ModifierId modifierId = ModifierId.tryParse(modifier.getAsJsonObject().get("modifier").getAsString());
+          int maxLevel = element.getAsJsonObject().get("max").getAsInt();
+          double weight = element.getAsJsonObject().get("weight").getAsDouble();
+          List<ModifierId> exceptions = element.getAsJsonObject().get("exceptions").getAsJsonArray().asList().stream().map(exception -> ModifierId.tryParse(exception.getAsString())).toList();
+
+        }
+
+        if (checkForOverlap())
+        break;
+      }
+    }
+  }
+
+  private static <E> boolean checkForOverlap(List<E> a, List<E> b) {
+    for (E element : a) {
+      if (b.contains(element)) {
+        return true;
+      }
+    }
+    return false;
   }
 }
