@@ -18,34 +18,22 @@ import java.util.List;
 public class JsonConfigReader {
   public static final Runnable MODIFIERS = () -> writeJsonFile(getFilePathAsString("modifiers"), createDefaultJsonObject(createJsonArray(
       new JsonObjectBuilder().add("item", "tconstruct:pickaxe").add("modifiers", createJsonArray(
-          new JsonObjectBuilder().add("modifier", "tconstruct:experienced").add("weight", 5).add("max", 5).add("exceptions", createJsonArray()).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:experienced").add("weight", 3).add("max", 5).add("exceptions", createJsonArray()).build(),
           new JsonObjectBuilder().add("modifier", "tconstruct:magnetic").add("weight", 2).add("max", 5).add("exceptions", createJsonArray()).build(),
           new JsonObjectBuilder().add("modifier", "tconstruct:reinforced").add("weight", 5).add("max", 5).add("exceptions", createJsonArray()).build(),
-
-          new JsonObjectBuilder().add("modifier", "tconstruct:blasting").add("weight", 3).add("max", 5).add("exceptions", createJsonArray()).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:haste").add("weight", 5).add("max", 5).add("exceptions", createJsonArray()).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:hydraulic").add("weight", 2).add("max", 5).add("exceptions", createJsonArray()).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:lightspeed").add("weight", 3).add("max", 5).add("exceptions", createJsonArray()).build()
+          new JsonObjectBuilder().add("modifier", "tconstruct:haste").add("weight", 5).add("max", 5).add("exceptions", createJsonArray()).build()
           )).build(),
       new JsonObjectBuilder().add("item", "tconstruct:sledge_hammer").add("modifiers", createJsonArray(
-          new JsonObjectBuilder().add("modifier", "tconstruct:experienced").add("weight", 5).add("max", 5).add("exceptions", createJsonArray()).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:experienced").add("weight", 3).add("max", 5).add("exceptions", createJsonArray()).build(),
           new JsonObjectBuilder().add("modifier", "tconstruct:magnetic").add("weight", 2).add("max", 5).add("exceptions", createJsonArray()).build(),
           new JsonObjectBuilder().add("modifier", "tconstruct:reinforced").add("weight", 5).add("max", 5).add("exceptions", createJsonArray()).build(),
-
-          new JsonObjectBuilder().add("modifier", "tconstruct:blasting").add("weight", 3).add("max", 5).add("exceptions", createJsonArray()).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:haste").add("weight", 5).add("max", 5).add("exceptions", createJsonArray()).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:hydraulic").add("weight", 2).add("max", 5).add("exceptions", createJsonArray()).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:lightspeed").add("weight", 3).add("max", 5).add("exceptions", createJsonArray()).build()
+          new JsonObjectBuilder().add("modifier", "tconstruct:haste").add("weight", 5).add("max", 5).add("exceptions", createJsonArray()).build()
       )).build(),
       new JsonObjectBuilder().add("item", "tconstruct:vein_hammer").add("modifiers", createJsonArray(
-          new JsonObjectBuilder().add("modifier", "tconstruct:experienced").add("weight", 5).add("max", 5).add("exceptions", createJsonArray()).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:experienced").add("weight", 3).add("max", 5).add("exceptions", createJsonArray()).build(),
           new JsonObjectBuilder().add("modifier", "tconstruct:magnetic").add("weight", 2).add("max", 5).add("exceptions", createJsonArray()).build(),
           new JsonObjectBuilder().add("modifier", "tconstruct:reinforced").add("weight", 5).add("max", 5).add("exceptions", createJsonArray()).build(),
-
-          new JsonObjectBuilder().add("modifier", "tconstruct:blasting").add("weight", 3).add("max", 5).add("exceptions", createJsonArray()).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:haste").add("weight", 5).add("max", 5).add("exceptions", createJsonArray()).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:hydraulic").add("weight", 2).add("max", 5).add("exceptions", createJsonArray()).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:lightspeed").add("weight", 3).add("max", 5).add("exceptions", createJsonArray()).build()
+          new JsonObjectBuilder().add("modifier", "tconstruct:haste").add("weight", 5).add("max", 5).add("exceptions", createJsonArray()).build()
       )).build(),
       new JsonObjectBuilder().add("item", "tconstruct:mattock").add("modifiers", createJsonArray(
           new JsonObjectBuilder().add("modifier", "tconstruct:magnetic").add("weight", 2).add("max", 5).add("exceptions", createJsonArray()).build(),
@@ -53,113 +41,105 @@ public class JsonConfigReader {
           new JsonObjectBuilder().add("modifier", "tconstruct:haste").add("weight", 5).add("max", 5).add("exceptions", createJsonArray()).build()
       )).build(),
       new JsonObjectBuilder().add("item", "tconstruct:pickadze").add("modifiers", createJsonArray(
-          new JsonObjectBuilder().add("modifier", "tconstruct:magnetic").add("weight", 2).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:reinforced").add("weight", 5).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:haste").add("weight", 5).add("max", 5).build()
+          new JsonObjectBuilder().add("modifier", "tconstruct:magnetic").add("weight", 2).add("max", 5).add("exceptions", createJsonArray()).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:reinforced").add("weight", 5).add("max", 5).add("exceptions", createJsonArray()).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:haste").add("weight", 5).add("max", 5).add("exceptions", createJsonArray()).build()
       )).build(),
       new JsonObjectBuilder().add("item", "tconstruct:excavator").add("modifiers", createJsonArray(
-          new JsonObjectBuilder().add("modifier", "tconstruct:magnetic").add("weight", 2).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:reinforced").add("weight", 5).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:haste").add("weight", 5).add("max", 5).build()
+          new JsonObjectBuilder().add("modifier", "tconstruct:magnetic").add("weight", 2).add("max", 5).add("exceptions", createJsonArray()).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:reinforced").add("weight", 5).add("max", 5).add("exceptions", createJsonArray()).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:haste").add("weight", 5).add("max", 5).add("exceptions", createJsonArray()).build()
       )).build(),
       new JsonObjectBuilder().add("item", "tconstruct:hand_axe").add("modifiers", createJsonArray(
-          new JsonObjectBuilder().add("modifier", "tconstruct:magnetic").add("weight", 2).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:reinforced").add("weight", 5).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:haste").add("weight", 5).add("max", 5).build()
+          new JsonObjectBuilder().add("modifier", "tconstruct:magnetic").add("weight", 2).add("max", 5).add("exceptions", createJsonArray()).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:reinforced").add("weight", 5).add("max", 5).add("exceptions", createJsonArray()).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:haste").add("weight", 5).add("max", 5).add("exceptions", createJsonArray()).build()
       )).build(),
       new JsonObjectBuilder().add("item", "tconstruct:broad_axe").add("modifiers", createJsonArray(
-          new JsonObjectBuilder().add("modifier", "tconstruct:magnetic").add("weight", 2).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:reinforced").add("weight", 5).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:haste").add("weight", 5).add("max", 5).build()
+          new JsonObjectBuilder().add("modifier", "tconstruct:magnetic").add("weight", 2).add("max", 5).add("exceptions", createJsonArray()).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:reinforced").add("weight", 5).add("max", 5).add("exceptions", createJsonArray()).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:haste").add("weight", 5).add("max", 5).add("exceptions", createJsonArray()).build()
       )).build(),
       new JsonObjectBuilder().add("item", "tconstruct:kama").add("modifiers", createJsonArray(
-          new JsonObjectBuilder().add("modifier", "tconstruct:magnetic").add("weight", 4).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:reinforced").add("weight", 4).add("max", 5).build()
+          new JsonObjectBuilder().add("modifier", "tconstruct:magnetic").add("weight", 1).add("max", 5).add("exceptions", createJsonArray()).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:reinforced").add("weight", 1).add("max", 5).add("exceptions", createJsonArray()).build()
       )).build(),
       new JsonObjectBuilder().add("item", "tconstruct:scythe").add("modifiers", createJsonArray(
-          new JsonObjectBuilder().add("modifier", "tconstruct:magnetic").add("weight", 4).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:reinforced").add("weight", 4).add("max", 5).build()
+          new JsonObjectBuilder().add("modifier", "tconstruct:magnetic").add("weight", 1).add("max", 5).add("exceptions", createJsonArray()).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:reinforced").add("weight", 1).add("max", 5).add("exceptions", createJsonArray()).build()
       )).build(),
       new JsonObjectBuilder().add("item", "tconstruct:dagger").add("modifiers", createJsonArray(
           new JsonObjectBuilder().add("modifier", "tconstruct:experienced").add("weight", 4).add("max", 5).add("exceptions", createJsonArray()).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:magnetic").add("weight", 2).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:reinforced").add("weight", 4).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:fiery").add("weight", 3).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:knockback").add("weight", 2).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:necrotic").add("weight", 3).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:severing").add("weight", 3).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:sweeping_edge").add("weight", 3).add("max", 4).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:antiaquatic").add("weight", 1).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:bane_of_sssss").add("weight", 3).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:pierce").add("weight", 2).add("max", 3).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:sharpness").add("weight", 5).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:smite").add("weight", 5).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:swiftstrike").add("weight", 2).add("max", 5).build()
+          new JsonObjectBuilder().add("modifier", "tconstruct:reinforced").add("weight", 5).add("max", 5).add("exceptions", createJsonArray()).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:fiery").add("weight", 3).add("max", 5).add("exceptions", createJsonArray()).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:knockback").add("weight", 2).add("max", 5).add("exceptions", createJsonArray()).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:necrotic").add("weight", 3).add("max", 5).add("exceptions", createJsonArray()).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:severing").add("weight", 3).add("max", 3).add("exceptions", createJsonArray()).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:sweeping_edge").add("weight", 3).add("max", 3).add("exceptions", createJsonArray()).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:pierce").add("weight", 2).add("max", 3).add("exceptions", createJsonArray()).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:sharpness").add("weight", 5).add("max", 5).add("exceptions", createJsonArray()).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:smite").add("weight", 4).add("max", 5).add("exceptions", createJsonArray()).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:swiftstrike").add("weight", 2).add("max", 5).add("exceptions", createJsonArray()).build()
       )).build(),
       new JsonObjectBuilder().add("item", "tconstruct:sword").add("modifiers", createJsonArray(
-          new JsonObjectBuilder().add("modifier", "tconstruct:magnetic").add("weight", 2).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:reinforced").add("weight", 4).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:fiery").add("weight", 3).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:freezing").add("weight", 2).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:knockback").add("weight", 2).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:necrotic").add("weight", 3).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:padded").add("weight", 1).add("max", 3).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:severing").add("weight", 3).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:sweeping_edge").add("weight", 3).add("max", 4).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:antiaquatic").add("weight", 1).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:bane_of_sssss").add("weight", 3).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:cooling").add("weight", 1).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:killager").add("weight", 1).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:pierce").add("weight", 2).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:sharpness").add("weight", 5).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:smite").add("weight", 5).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:swiftstrike").add("weight", 2).add("max", 5).build()
+          new JsonObjectBuilder().add("modifier", "tconstruct:experienced").add("weight", 4).add("max", 5).add("exceptions", createJsonArray()).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:reinforced").add("weight", 5).add("max", 5).add("exceptions", createJsonArray()).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:fiery").add("weight", 3).add("max", 5).add("exceptions", createJsonArray()).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:knockback").add("weight", 2).add("max", 5).add("exceptions", createJsonArray()).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:necrotic").add("weight", 3).add("max", 5).add("exceptions", createJsonArray()).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:severing").add("weight", 3).add("max", 3).add("exceptions", createJsonArray()).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:sweeping_edge").add("weight", 3).add("max", 3).add("exceptions", createJsonArray()).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:pierce").add("weight", 2).add("max", 3).add("exceptions", createJsonArray()).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:sharpness").add("weight", 5).add("max", 5).add("exceptions", createJsonArray()).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:smite").add("weight", 4).add("max", 5).add("exceptions", createJsonArray()).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:swiftstrike").add("weight", 2).add("max", 5).add("exceptions", createJsonArray()).build()
       )).build(),
       new JsonObjectBuilder().add("item", "tconstruct:cleaver").add("modifiers", createJsonArray(
-          new JsonObjectBuilder().add("modifier", "tconstruct:magnetic").add("weight", 2).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:reinforced").add("weight", 4).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:fiery").add("weight", 3).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:freezing").add("weight", 2).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:knockback").add("weight", 2).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:necrotic").add("weight", 3).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:padded").add("weight", 1).add("max", 3).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:severing").add("weight", 3).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:sweeping_edge").add("weight", 3).add("max", 4).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:antiaquatic").add("weight", 1).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:bane_of_sssss").add("weight", 3).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:cooling").add("weight", 1).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:killager").add("weight", 1).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:pierce").add("weight", 2).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:sharpness").add("weight", 5).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:smite").add("weight", 5).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:swiftstrike").add("weight", 2).add("max", 5).build()
+          new JsonObjectBuilder().add("modifier", "tconstruct:experienced").add("weight", 4).add("max", 5).add("exceptions", createJsonArray()).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:reinforced").add("weight", 5).add("max", 5).add("exceptions", createJsonArray()).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:fiery").add("weight", 3).add("max", 5).add("exceptions", createJsonArray()).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:knockback").add("weight", 2).add("max", 5).add("exceptions", createJsonArray()).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:necrotic").add("weight", 3).add("max", 5).add("exceptions", createJsonArray()).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:severing").add("weight", 3).add("max", 3).add("exceptions", createJsonArray()).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:sweeping_edge").add("weight", 3).add("max", 3).add("exceptions", createJsonArray()).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:pierce").add("weight", 2).add("max", 3).add("exceptions", createJsonArray()).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:sharpness").add("weight", 5).add("max", 5).add("exceptions", createJsonArray()).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:smite").add("weight", 4).add("max", 5).add("exceptions", createJsonArray()).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:swiftstrike").add("weight", 2).add("max", 5).add("exceptions", createJsonArray()).build()
       )).build(),
       new JsonObjectBuilder().add("item", "tconstruct:crossbow").add("modifiers", createJsonArray(
-          new JsonObjectBuilder().add("modifier", "tconstruct:magnetic").add("weight", 2).add("max", 5).build(),
           new JsonObjectBuilder().add("modifier", "tconstruct:reinforced").add("weight", 4).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:impaling").add("weight", 1).add("max", 4).build(),
           new JsonObjectBuilder().add("modifier", "tconstruct:power").add("weight", 5).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:punch").add("weight", 3).add("max", 3).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:quick_charge").add("weight", 4).add("max", 3).build()
+          new JsonObjectBuilder().add("modifier", "tconstruct:punch").add("weight", 2).add("max", 5).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:quick_charge").add("weight", 4).add("max", 4).build()
       )).build(),
       new JsonObjectBuilder().add("item", "tconstruct:longbow").add("modifiers", createJsonArray(
-          new JsonObjectBuilder().add("modifier", "tconstruct:magnetic").add("weight", 2).add("max", 5).build(),
           new JsonObjectBuilder().add("modifier", "tconstruct:reinforced").add("weight", 4).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:impaling").add("weight", 1).add("max", 4).build(),
           new JsonObjectBuilder().add("modifier", "tconstruct:power").add("weight", 5).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:punch").add("weight", 3).add("max", 3).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:quick_charge").add("weight", 4).add("max", 3).build()
+          new JsonObjectBuilder().add("modifier", "tconstruct:punch").add("weight", 2).add("max", 5).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:quick_charge").add("weight", 4).add("max", 4).build()
       )).build(),
       new JsonObjectBuilder().add("item", "tconstruct:plate_helmet").add("modifiers", createJsonArray(
           new JsonObjectBuilder().add("modifier", "tconstruct:reinforced").add("weight", 3).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:ricochet").add("weight", 1).add("max", 5).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:springy").add("weight", 1).add("max", 5).build(),
           new JsonObjectBuilder().add("modifier", "tconstruct:thorns").add("weight", 1).add("max", 3).build(),
           new JsonObjectBuilder().add("modifier", "tconstruct:respiration").add("weight", 3).add("max", 3).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:protection").add("weight", 5).add("max", 3).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:projectile_protection").add("weight", 3).add("max", 3).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:blast_protection").add("weight", 3).add("max", 3).build(),
-          new JsonObjectBuilder().add("modifier", "tconstruct:fire_protection").add("weight", 3).add("max", 3).build()
+          new JsonObjectBuilder().add("modifier", "tconstruct:protection").add("weight", 5).add("max", 3).build()
+      )).build(),
+      new JsonObjectBuilder().add("item", "tconstruct:plate_chestplate").add("modifiers", createJsonArray(
+          new JsonObjectBuilder().add("modifier", "tconstruct:reinforced").add("weight", 3).add("max", 5).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:thorns").add("weight", 1).add("max", 3).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:protection").add("weight", 5).add("max", 3).build()
+      )).build(),
+      new JsonObjectBuilder().add("item", "tconstruct:plate_leggings").add("modifiers", createJsonArray(
+          new JsonObjectBuilder().add("modifier", "tconstruct:reinforced").add("weight", 3).add("max", 5).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:thorns").add("weight", 1).add("max", 3).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:protection").add("weight", 5).add("max", 3).build()
+      )).build(),
+      new JsonObjectBuilder().add("item", "tconstruct:plate_boots").add("modifiers", createJsonArray(
+          new JsonObjectBuilder().add("modifier", "tconstruct:reinforced").add("weight", 3).add("max", 5).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:thorns").add("weight", 1).add("max", 3).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:feather_falling").add("weight", 3).add("max", 4).build(),
+          new JsonObjectBuilder().add("modifier", "tconstruct:protection").add("weight", 5).add("max", 3).build()
       )).build()
   )));
 
