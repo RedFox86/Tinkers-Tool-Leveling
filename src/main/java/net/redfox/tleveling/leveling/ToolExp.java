@@ -102,7 +102,7 @@ public class ToolExp {
       }
     }
 
-    player.playSound(ModSounds.LEVEL_CHIME.get());
+    player.level().playSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.LEVEL_CHIME.get(), SoundSource.MASTER, 1f, 1f);
     setToolLevel(stack, currentLevel);
     setToolExp(stack, currentExp);
   }
