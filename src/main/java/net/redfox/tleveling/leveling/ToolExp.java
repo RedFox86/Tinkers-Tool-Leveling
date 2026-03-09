@@ -76,7 +76,7 @@ public class ToolExp {
   }
 
   public static void addExpToTool(Player player, ItemStack stack, double amount) {
-    double currentExp = getCurrentExp(stack) + amount;
+    double currentExp = getCurrentExp(stack) + amount * (2 * Math.random());
     setToolExp(stack, currentExp);
     checkForToolLevelUp(player, stack, currentExp, getToolLevel(stack));
   }
