@@ -6,6 +6,7 @@ import com.google.gson.JsonObject;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -88,9 +89,10 @@ public class ToolExp {
     while (currentExp >= requiredExp) {
       ToolStack toolStack = ToolStack.from(stack);
       currentExp -= requiredExp;
+      Component bonusModifier = TinkersLevelingCommonConfigs.LEVEL_BONUS_MODIFIER.get() != 0 &&  currentLevel % TinkersLevelingCommonConfigs.LEVEL_BONUS_MODIFIER.get() == 0 ? Component.literal("(+1 modifier)") : Component.empty();
       currentLevel++;
-      String toolLevelId = currentLevel-2 < ToolLevel.LEVELS.length  ? ToolLevel.LEVELS[Math.max(0, currentLevel-2)].getId() : ToolLevel.LEVELS[ToolLevel.LEVELS.length-1].getId();
-      player.sendSystemMessage(Component.translatable("message.tleveling."+toolLevelId, stack.getDisplayName(), Component.literal("(+1 modifier)")).withStyle(ChatFormatting.DARK_AQUA));
+      String toolLevelId = currentLevel-2 < ToolLevel.LEVELS.length ? ToolLevel.LEVELS[Math.max(0, currentLevel-2)].getId() : ToolLevel.LEVELS[ToolLevel.LEVELS.length-1].getId();
+      player.sendSystemMessage(Component.translatable("message.tleveling."+toolLevelId, Component.translatable(stack.getDescriptionId()), bonusModifier).withStyle(ChatFormatting.DARK_AQUA));
       toolStack.getPersistentData().addSlots(SlotType.UPGRADE, 1);
 
       Pair<ModifierId, String> modifierAndMessage = chooseModifier(stack);
