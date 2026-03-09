@@ -14,6 +14,7 @@ import net.redfox.tleveling.config.JsonConfigReader;
 import net.redfox.tleveling.config.TinkersLevelingCommonConfigs;
 import net.redfox.tleveling.util.ModSounds;
 import oshi.util.tuples.Pair;
+import oshi.util.tuples.Triplet;
 import slimeknights.tconstruct.common.TinkerTags;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.modifiers.ModifierId;
@@ -92,10 +93,10 @@ public class ToolExp {
       player.sendSystemMessage(Component.translatable("message.tleveling."+toolLevelId, stack.getDisplayName(), Component.literal("(+1 modifier)")).withStyle(ChatFormatting.DARK_AQUA));
       toolStack.getPersistentData().addSlots(SlotType.UPGRADE, 1);
 
-      ModifierId modifier = chooseModifier(stack);
-      if (modifier != null) {
-        player.sendSystemMessage(Component.translatable("message.tleveling."+modifier.toLanguageKey()).withStyle(ChatFormatting.DARK_AQUA));
-        toolStack.addModifier(modifier, 1);
+      Pair<ModifierId, String> modifierAndMessage = chooseModifier(stack);
+      if (modifierAndMessage.getA() != null) {
+        player.sendSystemMessage(Component.literal(modifierAndMessage.getB()).withStyle(ChatFormatting.DARK_AQUA));
+        toolStack.addModifier(modifierAndMessage.getA(), 1);
       }
     }
 
@@ -104,8 +105,8 @@ public class ToolExp {
     setToolExp(stack, currentExp);
   }
 
-  private static ModifierId chooseModifier(ItemStack stack) {
-    List<Pair<ModifierId, Double>> possibleModifiers = new ArrayList<>();
+  private static Pair<ModifierId, String> chooseModifier(ItemStack stack) {
+    List<Triplet<ModifierId, Double, String>> possibleModifiers = new ArrayList<>();
     ToolStack tool = ToolStack.from(stack);
     List<ModifierEntry> toolModifiers = tool.getModifierList();
     List<ModifierId> toolModifierIds = toolModifiers.stream().map(mod -> mod.getModifier().getId()).toList();
@@ -116,6 +117,7 @@ public class ToolExp {
           ModifierId modifierId = ModifierId.tryParse(modifier.getAsJsonObject().get("modifier").getAsString());
           int maxLevel = modifier.getAsJsonObject().get("max").getAsInt();
           double weight = modifier.getAsJsonObject().get("weight").getAsDouble();
+          String message = modifier.getAsJsonObject().get("message").getAsString();
           List<ModifierId> exceptions = modifier.getAsJsonObject().get("exceptions").getAsJsonArray().asList().stream().map(exception -> ModifierId.tryParse(exception.getAsString())).toList();
           if (checkForOverlap(toolModifierIds, exceptions)) continue;
           if (toolModifierIds.contains(modifierId)) {
@@ -123,28 +125,28 @@ public class ToolExp {
               continue;
             }
           }
-          possibleModifiers.add(new Pair<>(modifierId, weight));
+          possibleModifiers.add(new Triplet<>(modifierId, weight, message));
         }
       }
     }
 
     if (possibleModifiers.isEmpty()) {
-      return null;
+      return new Pair<>(null, null);
     }
 
     double sum = 0;
-    for (Pair<ModifierId, Double> pair : possibleModifiers) {
-      sum+=pair.getB();
+    for (var triplet : possibleModifiers) {
+      sum+=triplet.getB();
     }
     double randomValue = Math.random() * sum;
     double current = 0;
-    for (Pair<ModifierId, Double> pair : possibleModifiers) {
-      current += pair.getB();
+    for (var triplet : possibleModifiers) {
+      current += triplet.getB();
       if (randomValue <= current) {
-        return pair.getA();
+        return new Pair<>(triplet.getA(), triplet.getC());
       }
     }
-    return possibleModifiers.get(possibleModifiers.size()-1).getA();
+    return new Pair<>(possibleModifiers.get(possibleModifiers.size()-1).getA(), possibleModifiers.get(possibleModifiers.size()-1).getC());
   }
 
   private static <E> boolean checkForOverlap(List<E> a, List<E> b) {
