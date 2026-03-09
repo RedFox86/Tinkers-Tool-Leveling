@@ -62,6 +62,7 @@ public class ForgeEvents {
     }
     @SubscribeEvent
     public static void onLivingEntityHurt(LivingHurtEvent event) {
+      if (event.getAmount() <= 0) return;
       if (event.getEntity().level().isClientSide()) return;
       if (event.getEntity() instanceof Player player) {
         if (ToolExp.TAKE_DAMAGES.contains(player.getItemBySlot(EquipmentSlot.HEAD).getItem())) {
