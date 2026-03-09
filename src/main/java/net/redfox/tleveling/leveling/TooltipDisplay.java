@@ -44,11 +44,12 @@ public class TooltipDisplay {
     });
 
     int toolLevel = ToolExp.getToolLevel(stack);
+    Component tooltipComponent = toolLevel-1 < ToolLevel.LEVELS.length ? ToolLevel.LEVELS[toolLevel-1].getComponent() : ToolLevel.LEVELS[ToolLevel.LEVELS.length-1].getComponent();
 
     tooltip.subList(1, tooltip.size()).clear();
 
     tooltip.add(Component.empty());
-    tooltip.add(Component.translatable("tooltip.tleveling.tool_level", ToolLevel.LEVELS[toolLevel-1].getComponent(), Component.literal("(" + toolLevel + ")").withStyle(ChatFormatting.DARK_GRAY)));
+    tooltip.add(Component.translatable("tooltip.tleveling.tool_level", tooltipComponent, Component.literal("(" + toolLevel + ")").withStyle(ChatFormatting.DARK_GRAY)));
     tooltip.add(Component.translatable("tooltip.tleveling.tool_exp", Component.literal(formatNumber(currentExp)+"/"+formatNumber(neededExp)), percentageComponent));
   }
 

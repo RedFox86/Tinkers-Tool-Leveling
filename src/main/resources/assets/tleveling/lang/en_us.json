@@ -35,6 +35,7 @@
 	"message.tleveling.legendary": "No god could stand in the way of you and your %s! %s",
 	"message.tleveling.godlike": "Your %s is pure awesome. %s",
 	"message.tleveling.awesome": "Your %s has reached MAXIMUM POWER!! %s",
+	"message.tleveling.transcendent": "Your %s has trancended the realm of this mod dev's imagination! %s",
 
 	"message.tleveling.tconstruct.worldbound": "You feel your tool become strangely solid... (+1 worldbound)",
 	"message.tleveling.tconstruct.magnetic": "You feel your tool pull you closer... (+1 magnetic)",
