@@ -6,7 +6,7 @@ That being said, this mod grants your tool a random modifier upon leveling up. E
 
 **CUSTOMIZATION**
 
-Customization is supported via datapack to modify the tags used in this mod to determine valid items to gain exp. You can modify the tags to change which blocks or entities are excluded from giving exp. Additionally, to change the amount of exp gotten, there is a config file in (instance)/config/tinkersleveling-common.toml.
+This mod is centralized around customization -- nearly every feature can be customized. Using the folder in the standard config folder, you can change which tools have exp, how they gain it, which modifiers they gain, and how long it takes to level up
 
 **FEATURES**
 
@@ -17,26 +17,13 @@ Customization is supported via datapack to modify the tags used in this mod to d
 *   Each levelup requires 2.5x the exp than the previous one.
 *   At the moment just upgrades (no abilities) can be gotten.
 
-You are allowed to use this mod in your modpack :P
-
 **MODIFIER WORKTABLE**
 
 The modifier worktable is a recently added part of Tinker's Construct that allows you to remove modifiers from a tool and get the upgrade back. While this does disrupt the point of the entire mod (random upgrade that you have no control over), there is nothing I can do to stop this other than completely removing the modifier worktable altogether. I encourage you not to remove the level-granted modifiers, but it's entirely up to you.
 
-**FAQ**
-
-"Where is the config??"
-
-\- Config can be accessed by creating a datapack for your world to override the tags of the mod.
-
-\- There is also a server config in the config folder for your instance.
-
-"Fabric pls!!"
-
-\- While I do appreciate fabric, as there is not an __official__ Tinker's Construct port for fabric, I will not create a fabric version.
-
 **Credits**
 
-\- Level up sound effect, level names, base icon, and level up messages from the original mod: [Tinkers' Tool Leveling](https://github.com/SlimeKnights/TinkersToolLeveling)
+- You are allowed to use this mod in your modpack :P
+- Level up sound effect, level names, base icon, and level up messages from the original mod: [Tinkers' Tool Leveling](https://github.com/SlimeKnights/TinkersToolLeveling)
 
 Report bugs on the issue tracker at [github.com/RedFox86/Tinkers-Tool-Leveling](https://github.com/RedFox86/Tinkers-Tool-Leveling/issues)
