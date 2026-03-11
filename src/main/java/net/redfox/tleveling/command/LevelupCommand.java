@@ -8,9 +8,7 @@ import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.redfox.tleveling.leveling.ToolLevel;
-import net.redfox.tleveling.leveling.ToolLeveling;
-import net.redfox.tleveling.util.MathHandler;
+import net.redfox.tleveling.leveling.ToolExp;
 import net.redfox.tleveling.util.ModTags;
 
 public class LevelupCommand {
@@ -24,18 +22,13 @@ public class LevelupCommand {
 			return -1;
 		}
 		ItemStack stack = player.getMainHandItem();
-		if (!stack.is(ModTags.Items.ALL_TOOLS)) {
+		if (!stack.is(ModTags.Items.LEVELABLE)) {
 			source.sendFailure(Component.literal("This item cannot level up!"));
 			return -1;
 		}
-		if (ToolLevel.TOOL_LEVELS[stack.getOrCreateTag().getInt("toolLevel")].isMaxLevel()) {
-			source.sendFailure(Component.literal("This item has reached the maximum level!"));
-			return -1;
-		}
-		ToolLevel level = ToolLevel.TOOL_LEVELS[stack.getOrCreateTag().getInt("toolLevel")];
-		int requiredExp = MathHandler.getRequiredExp(level.getLevel());
-		stack.getOrCreateTag().putDouble("toolExp", requiredExp);
-		new ToolLeveling(source.getPlayer());
+		int requiredExp = (int) Math.round(ToolExp.getRequiredExp(ToolExp.getToolLevel(stack) + 1));
+		ToolExp.setToolExp(stack, requiredExp);
+    ToolExp.checkForToolLevelUp(player, stack, ToolExp.getCurrentExp(stack), ToolExp.getToolLevel(stack));
 		source.sendSystemMessage(Component.literal("Tool successfully leveled up."));
 		return Command.SINGLE_SUCCESS;
 	}

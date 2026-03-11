@@ -83,7 +83,7 @@ public class ToolExp {
     checkForToolLevelUp(player, stack, currentExp, getToolLevel(stack));
   }
 
-  private static void checkForToolLevelUp(Player player, ItemStack stack, double currentExp, int currentLevel) {
+  public static void checkForToolLevelUp(Player player, ItemStack stack, double currentExp, int currentLevel) {
     double requiredExp = getRequiredExp(currentLevel+1);
     if (currentExp < requiredExp) return;
     while (currentExp >= requiredExp) {

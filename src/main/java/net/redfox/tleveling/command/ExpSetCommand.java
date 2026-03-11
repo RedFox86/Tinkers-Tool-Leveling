@@ -9,6 +9,7 @@ import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.redfox.tleveling.leveling.ToolExp;
 import net.redfox.tleveling.util.ModTags;
 
 public class ExpSetCommand {
@@ -22,13 +23,14 @@ public class ExpSetCommand {
 			return -1;
 		}
 		ItemStack stack = player.getMainHandItem();
-		if (!stack.is(ModTags.Items.ALL_TOOLS)) {
+		if (!stack.is(ModTags.Items.LEVELABLE)) {
 			source.sendFailure(Component.literal("This item does not have tool exp!"));
 			return -1;
 		}
 		double value = IntegerArgumentType.getInteger(context, "value");
 		source.sendSystemMessage(Component.literal("Set tool exp to " + value + "."));
-		stack.getOrCreateTag().putDouble("toolExp", value);
+		ToolExp.setToolExp(stack, value);
+    ToolExp.checkForToolLevelUp(player, stack, ToolExp.getCurrentExp(stack), ToolExp.getToolLevel(stack));
 		return Command.SINGLE_SUCCESS;
 	}
 }

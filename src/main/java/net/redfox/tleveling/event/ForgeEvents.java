@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.ToolActions;
+import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
@@ -19,7 +20,13 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.server.command.ConfigCommand;
 import net.redfox.tleveling.TinkersLeveling;
+import net.redfox.tleveling.command.ExpGetCommand;
+import net.redfox.tleveling.command.ExpSetCommand;
+import net.redfox.tleveling.command.LevelGetCommand;
+import net.redfox.tleveling.command.LevelSetCommand;
+import net.redfox.tleveling.command.LevelupCommand;
 import net.redfox.tleveling.config.TinkersLevelingCommonConfigs;
 import net.redfox.tleveling.leveling.ToolExp;
 import net.redfox.tleveling.leveling.TooltipDisplay;
@@ -47,6 +54,16 @@ public class ForgeEvents {
       } else {
         TooltipDisplay.insertAltTooltip(event.getToolTip());
       }
+    }
+    @SubscribeEvent
+    public static void onCommandsRegister(RegisterCommandsEvent event) {
+      new ExpSetCommand(event.getDispatcher());
+      new ExpGetCommand(event.getDispatcher());
+      new LevelGetCommand(event.getDispatcher());
+      new LevelSetCommand(event.getDispatcher());
+      new LevelupCommand(event.getDispatcher());
+
+      ConfigCommand.register(event.getDispatcher());
     }
   }
 
