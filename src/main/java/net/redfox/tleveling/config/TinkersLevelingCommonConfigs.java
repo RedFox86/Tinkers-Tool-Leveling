@@ -26,7 +26,7 @@ public class TinkersLevelingCommonConfigs {
         .defineInRange("armorHitMultiplier", 1d, 0, Integer.MAX_VALUE);
     LEVEL_BONUS_MODIFIER = BUILDER.comment("The amount of levels between each bonus modifier. Set to 0 to disable bonus modifiers. Default is 3")
         .define("modifierLevelGap", 3);
-    LEVELUP_EXP_REQUIRED = BUILDER.comment("The base exp required to level up a tool. Default is 500")
+    LEVELUP_EXP_REQUIRED = BUILDER.comment("The base exp required to level up a tool. Default is 200")
         .defineInRange("levelupExpRequired", 200, 1, Integer.MAX_VALUE);
     LEVELUP_INCREASE = BUILDER.comment("The exponential increase between tool exp levels. Default is 2.0")
         .defineInRange("levelupExpIncrease", 2d, 0, Integer.MAX_VALUE);
