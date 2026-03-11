@@ -9,6 +9,7 @@ import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.redfox.tleveling.leveling.ToolExp;
 import net.redfox.tleveling.util.ModTags;
 
 public class LevelSetCommand {
@@ -22,13 +23,13 @@ public class LevelSetCommand {
 			return -1;
 		}
 		ItemStack stack = player.getMainHandItem();
-		if (!stack.is(ModTags.Items.ALL_TOOLS)) {
+		if (!stack.is(ModTags.Items.LEVELABLE)) {
 			source.sendFailure(Component.literal("This item does not have a tool level!"));
 			return -1;
 		}
 		int value = IntegerArgumentType.getInteger(context, "value");
 		source.sendSystemMessage(Component.literal("Set tool level to " + value + "."));
-		stack.getOrCreateTag().putInt("toolLevel", value);
+    ToolExp.setToolLevel(stack, value);
 		return Command.SINGLE_SUCCESS;
 	}
 }

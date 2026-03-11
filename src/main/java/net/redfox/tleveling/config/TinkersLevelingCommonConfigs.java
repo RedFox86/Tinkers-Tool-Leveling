@@ -1,36 +1,37 @@
 package net.redfox.tleveling.config;
 
+
 import net.minecraftforge.common.ForgeConfigSpec;
 
 public class TinkersLevelingCommonConfigs {
-	public static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
-	public static final ForgeConfigSpec SPEC;
+  public static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
+  public static final ForgeConfigSpec SPEC;
 
-	public static final ForgeConfigSpec.ConfigValue<Double> PICKAXE_EXP_MULTIPLIER;
-	public static final ForgeConfigSpec.ConfigValue<Double> KILL_EXP_MULTIPLIER;
-	public static final ForgeConfigSpec.ConfigValue<Double> ARMOR_EXP_MULTIPLIER;
-	public static final ForgeConfigSpec.ConfigValue<Boolean> ADMIN_MINING_EXP;
-	public static final ForgeConfigSpec.ConfigValue<Integer> LEVELUP_EXP_REQUIRED;
+  public static final ForgeConfigSpec.ConfigValue<Double> PICKAXE_EXP_MULTIPLIER;
+  public static final ForgeConfigSpec.ConfigValue<Double> KILL_EXP_MULTIPLIER;
+  public static final ForgeConfigSpec.ConfigValue<Double> ARMOR_EXP_MULTIPLIER;
+  public static final ForgeConfigSpec.ConfigValue<Integer> LEVELUP_EXP_REQUIRED;
+  public static final ForgeConfigSpec.ConfigValue<Double> LEVELUP_INCREASE;
 
-	public static final ForgeConfigSpec.ConfigValue<Integer> LEVEL_BONUS_MODIFIER;
+  public static final ForgeConfigSpec.ConfigValue<Integer> LEVEL_BONUS_MODIFIER;
 
-	static {
-		BUILDER.push("Client Configs for Tinker's Tool Leveling 2");
+  static {
+    BUILDER.push("Common Configs for Tinker's Tool Leveling");
 
-		PICKAXE_EXP_MULTIPLIER = BUILDER.comment("The multiplier for the exp granted to a mining tool after each block break. Default is 1.0")
-				.define("Exp Per Block", 1.0d);
-		KILL_EXP_MULTIPLIER = BUILDER.comment("The multiplier for the exp granted to a melee weapon after each block break. Default is 1.0")
-				.define("Exp Per Melee Kill", 1.0d);
-		ARMOR_EXP_MULTIPLIER = BUILDER.comment("The multiplier for the exp granted to an armor piece after each block break. Default is 1.0")
-				.define("Exp Per Armor Hit", 1.0d);
-		ADMIN_MINING_EXP = BUILDER.comment("Whether or not breaking bedrock gives 100,000 exp for a mining tool. Primarily used for admin purposes. Default is true")
-				.define("Admin Exp", true);
-		LEVEL_BONUS_MODIFIER = BUILDER.comment("The amount of levels between each bonus modifier. Set to 0 to disable bonus modifiers. Default is 3")
-				.defineInRange("Levels Between Bonus Modifiers", 3, 0, 11);
-		LEVELUP_EXP_REQUIRED = BUILDER.comment("The base exp required to level up a tool. Default is 500")
-				.defineInRange("Exp Required", 500, 1, 2147483647);
+    PICKAXE_EXP_MULTIPLIER = BUILDER.comment("The multiplier for the exp granted to a mining tool after each block break. Default is 1.0")
+        .defineInRange("blockBreakMultiplier", 1d, 0, Integer.MAX_VALUE);
+    KILL_EXP_MULTIPLIER = BUILDER.comment("The multiplier for the exp granted to a melee weapon after each block break. Default is 1.0")
+        .defineInRange("damageEntityMultiplier", 1d, 0, Integer.MAX_VALUE);
+    ARMOR_EXP_MULTIPLIER = BUILDER.comment("The multiplier for the exp granted to an armor piece after each block break. Default is 1.0")
+        .defineInRange("armorHitMultiplier", 1d, 0, Integer.MAX_VALUE);
+    LEVEL_BONUS_MODIFIER = BUILDER.comment("The amount of levels between each bonus modifier. Set to 0 to disable bonus modifiers. Default is 3")
+        .define("modifierLevelGap", 3);
+    LEVELUP_EXP_REQUIRED = BUILDER.comment("The base exp required to level up a tool. Default is 200")
+        .defineInRange("levelupExpRequired", 200, 1, Integer.MAX_VALUE);
+    LEVELUP_INCREASE = BUILDER.comment("The exponential increase between tool exp levels. Default is 2.0")
+        .defineInRange("levelupExpIncrease", 2d, 0, Integer.MAX_VALUE);
 
-		BUILDER.pop();
-		SPEC = BUILDER.build();
-	}
+    BUILDER.pop();
+    SPEC = BUILDER.build();
+  }
 }

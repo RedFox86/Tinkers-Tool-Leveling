@@ -6,7 +6,7 @@ import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.redfox.tleveling.util.MathHandler;
+import net.redfox.tleveling.leveling.ToolExp;
 import net.redfox.tleveling.util.ModTags;
 
 public class ExpGetCommand {
@@ -19,12 +19,12 @@ public class ExpGetCommand {
 			return -1;
 		}
 		ItemStack stack = player.getMainHandItem();
-		if (!stack.is(ModTags.Items.ALL_TOOLS)) {
+		if (!stack.is(ModTags.Items.LEVELABLE)) {
 			source.sendFailure(Component.literal("This item does not have tool exp!"));
 			return -1;
 		}
-		int exp = MathHandler.round(stack.getOrCreateTag().getDouble("toolExp"));
-		int requiredExp = MathHandler.getRequiredExp(stack.getOrCreateTag().getInt("toolLevel"));
+		int exp = (int) Math.round(ToolExp.getCurrentExp(stack));
+		int requiredExp = (int) Math.round(ToolExp.getRequiredExp(ToolExp.getToolLevel(stack) + 1));
 		source.sendSystemMessage(Component.literal("This tool has " + exp + " exp out of required " + requiredExp + "."));
 		return exp;
 	}
