@@ -10,6 +10,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.redfox.tleveling.TinkersLeveling;
 import net.redfox.tleveling.config.JsonConfigReader;
 import net.redfox.tleveling.config.TinkersLevelingCommonConfigs;
 import net.redfox.tleveling.util.ModSounds;
@@ -22,6 +23,7 @@ import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class ToolExp {
   private static final double EXPONENTIAL_INCREASE = TinkersLevelingCommonConfigs.LEVELUP_INCREASE.get();
@@ -112,23 +114,29 @@ public class ToolExp {
     List<ModifierEntry> toolModifiers = tool.getModifierList();
     List<ModifierId> toolModifierIds = toolModifiers.stream().map(mod -> mod.getModifier().getId()).toList();
 
-    for (JsonElement element : MODIFIERS) {
-      if (element.getAsJsonObject().get("item").getAsString().equals(stack.getItemHolder().unwrapKey().get().location().toString())) {
-        for (JsonElement modifier : element.getAsJsonObject().get("modifiers").getAsJsonArray()) {
-          ModifierId modifierId = ModifierId.tryParse(modifier.getAsJsonObject().get("modifier").getAsString());
-          int maxLevel = modifier.getAsJsonObject().get("max").getAsInt();
-          double weight = modifier.getAsJsonObject().get("weight").getAsDouble();
-          String message = modifier.getAsJsonObject().get("message").getAsString();
-          List<ModifierId> exceptions = modifier.getAsJsonObject().get("exceptions").getAsJsonArray().asList().stream().map(exception -> ModifierId.tryParse(exception.getAsString())).toList();
-          if (checkForOverlap(toolModifierIds, exceptions)) continue;
-          if (toolModifierIds.contains(modifierId)) {
-            if (toolModifiers.stream().filter(thing -> thing.getModifier().getId().equals(modifierId)).findFirst().get().getLevel() == maxLevel) {
-              continue;
+    try {
+
+      for (JsonElement element : MODIFIERS) {
+        if (element.getAsJsonObject().get("item").getAsString().equals(stack.getItemHolder().unwrapKey().orElseThrow().location().toString())) {
+          for (JsonElement modifier : element.getAsJsonObject().get("modifiers").getAsJsonArray()) {
+            ModifierId modifierId = ModifierId.tryParse(modifier.getAsJsonObject().get("modifier").getAsString());
+            int maxLevel = modifier.getAsJsonObject().get("max").getAsInt();
+            double weight = modifier.getAsJsonObject().get("weight").getAsDouble();
+            String message = modifier.getAsJsonObject().get("message").getAsString();
+            List<ModifierId> exceptions = modifier.getAsJsonObject().get("exceptions").getAsJsonArray().asList().stream().map(exception -> ModifierId.tryParse(exception.getAsString())).toList();
+            if (checkForOverlap(toolModifierIds, exceptions)) continue;
+            if (toolModifierIds.contains(modifierId)) {
+              if (toolModifiers.stream().filter(thing -> thing.getModifier().getId().equals(modifierId)).findFirst().orElseThrow().getLevel() == maxLevel) {
+                continue;
+              }
             }
+            possibleModifiers.add(new Triplet<>(modifierId, weight, message));
           }
-          possibleModifiers.add(new Triplet<>(modifierId, weight, message));
         }
       }
+    } catch (NoSuchElementException e) {
+      TinkersLeveling.LOGGER.error("The JSON file was not formatted properly! Some functions may not work correctly...");
+      e.printStackTrace();
     }
 
     if (possibleModifiers.isEmpty()) {
