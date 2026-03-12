@@ -2,7 +2,6 @@ package net.redfox.tleveling.leveling;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -16,18 +15,13 @@ import net.redfox.tleveling.config.TinkersLevelingCommonConfigs;
 import net.redfox.tleveling.util.ModSounds;
 import oshi.util.tuples.Pair;
 import oshi.util.tuples.Triplet;
-import slimeknights.tconstruct.common.TinkerTags;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.modifiers.ModifierId;
 import slimeknights.tconstruct.library.tools.SlotType;
 import slimeknights.tconstruct.library.tools.nbt.ToolStack;
-import slimeknights.tconstruct.tables.block.entity.table.TinkerStationBlockEntity;
-import slimeknights.tconstruct.tools.TinkerModifiers;
-import slimeknights.tconstruct.tools.data.ModifierIds;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class ToolExp {
   private static final double EXPONENTIAL_INCREASE = TinkersLevelingCommonConfigs.LEVELUP_INCREASE.get();
@@ -78,7 +72,7 @@ public class ToolExp {
   }
 
   public static void addExpToTool(Player player, ItemStack stack, double amount) {
-    double currentExp = getCurrentExp(stack) + amount * (2 * Math.random());
+    double currentExp = getCurrentExp(stack) + amount * getRandomnessFactor();
     setToolExp(stack, currentExp);
     checkForToolLevelUp(player, stack, currentExp, getToolLevel(stack));
   }
@@ -158,5 +152,11 @@ public class ToolExp {
       }
     }
     return false;
+  }
+
+  private static double getRandomnessFactor() {
+    double min = 1-TinkersLevelingCommonConfigs.RANDOMNESS_FACTOR.get();
+    double max = 1-TinkersLevelingCommonConfigs.RANDOMNESS_FACTOR.get();
+    return min + Math.random() * ((max-min) +1);
   }
 }

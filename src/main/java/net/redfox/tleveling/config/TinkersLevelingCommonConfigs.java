@@ -12,6 +12,7 @@ public class TinkersLevelingCommonConfigs {
   public static final ForgeConfigSpec.ConfigValue<Double> ARMOR_EXP_MULTIPLIER;
   public static final ForgeConfigSpec.ConfigValue<Integer> LEVELUP_EXP_REQUIRED;
   public static final ForgeConfigSpec.ConfigValue<Double> LEVELUP_INCREASE;
+  public static final ForgeConfigSpec.ConfigValue<Double> RANDOMNESS_FACTOR;
 
   public static final ForgeConfigSpec.ConfigValue<Integer> LEVEL_BONUS_MODIFIER;
 
@@ -30,6 +31,10 @@ public class TinkersLevelingCommonConfigs {
         .defineInRange("levelupExpRequired", 200, 1, Integer.MAX_VALUE);
     LEVELUP_INCREASE = BUILDER.comment("The exponential increase between tool exp levels. Default is 2.0")
         .defineInRange("levelupExpIncrease", 2d, 0, Integer.MAX_VALUE);
+    RANDOMNESS_FACTOR = BUILDER.comment("The randomness factor when gaining exp.")
+        .comment("A value of 1 means that the tool's exp gain will be randomized from +-100% of what it was")
+        .comment("For example, if a tool gains 5 exp with a randomness factor of 1, it can gain anywhere from 0 to 10 exp.")
+        .defineInRange("randomnessFactor", 0.5, 0, 1);
 
     BUILDER.pop();
     SPEC = BUILDER.build();
