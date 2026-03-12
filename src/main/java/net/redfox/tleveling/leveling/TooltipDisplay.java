@@ -1,16 +1,10 @@
 package net.redfox.tleveling.leveling;
 
-import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.ChatFormatting;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.redfox.tleveling.util.ModKeybinds;
-import net.redfox.tleveling.util.ModTags;
-import slimeknights.tconstruct.library.modifiers.impl.BasicModifier;
 import slimeknights.tconstruct.library.tools.helper.TooltipUtil;
 
 import java.util.List;
