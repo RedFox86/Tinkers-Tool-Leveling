@@ -7,9 +7,12 @@ import net.minecraft.world.item.ItemStack;
 import net.redfox.tleveling.util.ModKeybinds;
 import slimeknights.tconstruct.library.tools.helper.TooltipUtil;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class TooltipDisplay {
+  private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("#,##0.00");
+
   public static void insertAltTooltip(List<Component> tooltip) {
     int index = tooltip.indexOf(TooltipUtil.TOOLTIP_HOLD_CTRL);
     if (index == -1) index = tooltip.indexOf(TooltipUtil.TOOLTIP_HOLD_SHIFT);
@@ -28,8 +31,8 @@ public class TooltipDisplay {
   public static void insertExpTooltip(List<Component> tooltip, ItemStack stack) {
     double currentExp = ToolExp.getCurrentExp(stack);
     double neededExp = ToolExp.getRequiredExp(ToolExp.getToolLevel(stack)+1);
-    double percentage = Math.round((currentExp / neededExp)*100);
-    Component percentageComponent = Component.literal(percentage + "%").withStyle(switch ((int) (percentage / 25)) {
+    double percentage = (currentExp / neededExp) * 100;
+    Component percentageComponent = Component.literal(formatNumber(percentage) + "%").withStyle(switch ((int) (percentage / 25)) {
       case 0 -> ChatFormatting.RED;
       case 1 -> ChatFormatting.YELLOW;
       case 2 -> ChatFormatting.GREEN;
@@ -48,19 +51,6 @@ public class TooltipDisplay {
   }
 
   private static String formatNumber(double num) {
-    String raw = String.format("%.2f", num);
-    String[] parts = raw.split("\\.");
-    String number = parts[0];
-    String result = "";
-    int j = 0;
-    for (int i = number.length() - 1; i >= 0; i--) {
-      result = number.charAt(i) + result;
-      j++;
-      if (j == 3 && i > 0) {
-        result = "," + result;
-        j = 0;
-      }
-    }
-    return result + "." + parts[1];
+    return DECIMAL_FORMAT.format(num);
   }
 }
