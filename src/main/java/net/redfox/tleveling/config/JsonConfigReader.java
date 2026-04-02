@@ -107,13 +107,13 @@ public class JsonConfigReader {
           new JsonObjectBuilder().add("modifier", "tconstruct:smite").add("weight", 4).add("max", 5).add("exceptions", createJsonArray()).add("message", "Your tool sends the undead running... (+1 smite)").build(),
           new JsonObjectBuilder().add("modifier", "tconstruct:swiftstrike").add("weight", 2).add("max", 5).add("exceptions", createJsonArray()).add("message", "You feel your tool become much lighter and faster... (+1 swiftstrike)").build()
       )).build(),
-      new JsonObjectBuilder().add("item", "tconstruct:crossbow").add("source", createJsonArray("tleveling:damage_entity")).add("modifiers", createJsonArray(
+      new JsonObjectBuilder().add("item", "tconstruct:crossbow").add("source", createJsonArray("tleveling:ranged_damage_entity")).add("modifiers", createJsonArray(
           new JsonObjectBuilder().add("modifier", "tconstruct:reinforced").add("weight", 4).add("max", 5).add("exceptions", createJsonArray()).add("message", "Your tool seems much more durable now... (+1 reinforced)").build(),
           new JsonObjectBuilder().add("modifier", "tconstruct:power").add("weight", 5).add("max", 5).add("exceptions", createJsonArray()).add("message", "Your projectiles seem especially powerful... (+1 power)").build(),
           new JsonObjectBuilder().add("modifier", "tconstruct:punch").add("weight", 2).add("max", 5).add("exceptions", createJsonArray()).add("message", "Your projectiles seem like they would pack a punch... (+1 punch)").build(),
           new JsonObjectBuilder().add("modifier", "tconstruct:quick_charge").add("weight", 4).add("max", 4).add("exceptions", createJsonArray()).add("message", "Your crossbow seems especially easy to charge... (+1 quick_charge)").build()
       )).build(),
-      new JsonObjectBuilder().add("item", "tconstruct:longbow").add("source", createJsonArray("tleveling:damage_entity")).add("modifiers", createJsonArray(
+      new JsonObjectBuilder().add("item", "tconstruct:longbow").add("source", createJsonArray("tleveling:ranged_damage_entity")).add("modifiers", createJsonArray(
           new JsonObjectBuilder().add("modifier", "tconstruct:reinforced").add("weight", 4).add("max", 5).add("exceptions", createJsonArray()).add("message", "Your tool seems much more durable now... (+1 reinforced)").build(),
           new JsonObjectBuilder().add("modifier", "tconstruct:power").add("weight", 5).add("max", 5).add("exceptions", createJsonArray()).add("message", "Your projectiles seem especially powerful... (+1 power)").build(),
           new JsonObjectBuilder().add("modifier", "tconstruct:punch").add("weight", 2).add("max", 5).add("exceptions", createJsonArray()).add("message", "Your projectiles seem like they would pack a punch... (+1 punch)").build(),

@@ -33,6 +33,7 @@ public class ToolExp {
 
   public static final List<Item> BREAK_BLOCKS = new ArrayList<>();
   public static final List<Item> DAMAGE_ENTITIES = new ArrayList<>();
+  public static final List<Item> RANGED_DAMAGE_ENTITIES = new ArrayList<>();
   public static final List<Item> TILLS = new ArrayList<>();
   public static final List<Item> SHEARS = new ArrayList<>();
   public static final List<Item> TAKE_DAMAGES = new ArrayList<>();
@@ -44,6 +45,7 @@ public class ToolExp {
         switch (source.getAsString()) {
           case "tleveling:break_block" -> BREAK_BLOCKS.add(item);
           case "tleveling:damage_entity" -> DAMAGE_ENTITIES.add(item);
+          case "tleveling:ranged_damage_entity" -> RANGED_DAMAGE_ENTITIES.add(item);
           case "tleveling:till" -> TILLS.add(item);
           case "tleveling:shear" -> SHEARS.add(item);
           case "tleveling:take_damage" -> TAKE_DAMAGES.add(item);

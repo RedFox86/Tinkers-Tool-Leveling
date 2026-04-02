@@ -2,6 +2,7 @@ package net.redfox.tleveling.event;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.Minecraft;
+import net.minecraft.network.chat.Component;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
@@ -9,9 +10,11 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.ToolActions;
 import net.minecraftforge.event.RegisterCommandsEvent;
+import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
@@ -115,6 +118,17 @@ public class ForgeEvents {
     @SubscribeEvent
     public static void onShear(TinkerToolEvent.ToolShearEvent event) {
       ToolExp.addExpToTool(event.getPlayer(), event.getStack(), 5);
+    }
+
+    @SubscribeEvent
+    public static void onProjectileImpact(ProjectileImpactEvent event) {
+      if (event.getEntity().level().isClientSide()) return;
+      if (!event.getRayTraceResult().getType().equals(HitResult.Type.ENTITY)) return;
+
+      if (event.getProjectile().getOwner() instanceof Player player) {
+        if (!ToolExp.RANGED_DAMAGE_ENTITIES.contains(player.getMainHandItem().getItem())) return;
+        ToolExp.addExpToTool(player, player.getMainHandItem(), 5 * TinkersLevelingCommonConfigs.KILL_EXP_MULTIPLIER.get());
+      }
     }
   }
   public static boolean isDuplicateEvent() {
