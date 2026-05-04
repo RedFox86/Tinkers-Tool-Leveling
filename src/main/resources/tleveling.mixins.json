@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.redfox.tleveling.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "tleveling.refmap.json",
+  "mixins": [
+    "ToolPartReplacementMixin$RecipeMixin"
+  ],
+  "client": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
