@@ -54,6 +54,17 @@ public class ToolExp {
     }
   }
 
+  public static boolean isLevelableTool(Item item) {
+    if (BREAK_BLOCKS.contains(item) ||
+        DAMAGE_ENTITIES.contains(item) ||
+        RANGED_DAMAGE_ENTITIES.contains(item) ||
+        TILLS.contains(item) ||
+        SHEARS.contains(item) ||
+        TAKE_DAMAGES.contains(item)
+    ) return true;
+    return false;
+  }
+
 
   public static double getRequiredExp(int approachingLevel) {
     return FIRST_LEVEL_EXP_REQUIREMENT * Math.pow(EXPONENTIAL_INCREASE, Math.max(0, approachingLevel-2));

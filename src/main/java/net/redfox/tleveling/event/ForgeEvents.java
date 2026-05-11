@@ -26,7 +26,6 @@ import net.redfox.tleveling.config.TinkersLevelingCommonConfigs;
 import net.redfox.tleveling.leveling.ToolExp;
 import net.redfox.tleveling.leveling.TooltipDisplay;
 import net.redfox.tleveling.util.ModKeybinds;
-import net.redfox.tleveling.util.ModTags;
 import slimeknights.tconstruct.library.events.TinkerToolEvent;
 
 public class ForgeEvents {
@@ -35,9 +34,9 @@ public class ForgeEvents {
   public static class Client {
     @SubscribeEvent
     public static void onTooltipDisplay(ItemTooltipEvent event) {
-      if (!event.getItemStack().is(ModTags.Items.LEVELABLE)) return;
       if (event.getEntity() == null) return;
       if (event.getToolTip() == null || event.getToolTip().isEmpty()) return;
+      if (!ToolExp.isLevelableTool(event.getItemStack().getItem())) return;
 
       long window = Minecraft.getInstance().getWindow().getWindow();
       if (InputConstants.isKeyDown(window, InputConstants.KEY_LSHIFT) || InputConstants.isKeyDown(window, InputConstants.KEY_RSHIFT) || InputConstants.isKeyDown(window, InputConstants.KEY_LCONTROL) || InputConstants.isKeyDown(window, InputConstants.KEY_RCONTROL)) return;
