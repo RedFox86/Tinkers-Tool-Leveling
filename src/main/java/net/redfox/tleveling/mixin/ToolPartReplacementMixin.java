@@ -25,8 +25,13 @@ public class ToolPartReplacementMixin {
     )
     private void onReplaceMaterial(ToolStack instance, int index, MaterialVariantId replacement) {
       instance.replaceMaterial(index, replacement);
+      if (TinkersLevelingCommonConfigs.EXP_LOSS_ON_REPLACE.get() == 1) return;
       ItemStack stack = instance.createStack();
-      ToolExp.setToolExp(stack, ToolExp.getCurrentExp(stack)/ TinkersLevelingCommonConfigs.EXP_LOSS_ON_REPLACE.get());
+      if (TinkersLevelingCommonConfigs.EXP_LOSS_ON_REPLACE.get() == 0) {
+        ToolExp.setToolExp(stack, 0);
+      } else {
+        ToolExp.setToolExp(stack, ToolExp.getCurrentExp(stack)/TinkersLevelingCommonConfigs.EXP_LOSS_ON_REPLACE.get());
+      }
     }
   }
 }
