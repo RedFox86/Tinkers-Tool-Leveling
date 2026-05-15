@@ -87,7 +87,7 @@ public class ToolExp {
   }
 
   public static void addExpToTool(Player player, ItemStack stack, double amount) {
-    double currentExp = getCurrentExp(stack) + amount * getRandomnessFactor();
+    double currentExp = getCurrentExp(stack) + randomizeNumber(amount);
     setToolExp(stack, currentExp);
     checkForToolLevelUp(player, stack, currentExp, getToolLevel(stack));
   }
@@ -180,9 +180,9 @@ public class ToolExp {
     return false;
   }
 
-  private static double getRandomnessFactor() {
-    double min = 1-TinkersLevelingCommonConfigs.RANDOMNESS_FACTOR.get();
-    double max = 1-TinkersLevelingCommonConfigs.RANDOMNESS_FACTOR.get();
-    return min + Math.random() * ((max-min) +1);
+  private static double randomizeNumber(double value) {
+    double min = value*(1-TinkersLevelingCommonConfigs.RANDOMNESS_FACTOR.get());
+    double max = value*(1+TinkersLevelingCommonConfigs.RANDOMNESS_FACTOR.get());
+    return min + Math.random() * (max-min);
   }
 }
