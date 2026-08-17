@@ -119,11 +119,11 @@ public class ForgeEvents {
       if (!event.getToolAction().equals(ToolActions.HOE_TILL)) return;
       if (!ToolExp.TILLS.contains(event.getHeldItemStack().getItem())) return;
 
-      ToolExp.addExpToTool(event.getPlayer(), event.getHeldItemStack(), 5);
+      ToolExp.addExpToTool(event.getPlayer(), event.getHeldItemStack(), TinkersLevelingCommonConfigs.BASE_EXPERIENCE_GAIN.get());
     }
     @SubscribeEvent
     public static void onShear(TinkerToolEvent.ToolShearEvent event) {
-      ToolExp.addExpToTool(event.getPlayer(), event.getStack(), 5);
+      ToolExp.addExpToTool(event.getPlayer(), event.getStack(), TinkersLevelingCommonConfigs.BASE_EXPERIENCE_GAIN.get());
     }
 
     @SubscribeEvent
